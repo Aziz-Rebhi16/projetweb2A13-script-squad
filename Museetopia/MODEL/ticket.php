@@ -1,89 +1,92 @@
 <?php
+
 class ticket {
     private ?int $id;
     private ?string $musee_name;
     private ?string $location;
-    private ?DateTime $time;
     private ?DateTime $date;
-    private ?string $ticket_type;
-    private ?bool $disponible;
+    private ?DateTime $time;
     private ?float $price;
+    private ?bool $disponible;
+    private ?string $category;
 
-    public function __construct($id, $musee_name, $location, DateTime $time, DateTime $date, $ticket_type, $disponible, $price)
-    {
+    // Constructor
+    public function __construct(?int $id, ?string $musee_name, ?string $location, ?DateTime $date, ?DateTime $time, ?float $price, ?bool $disponible, ?string $category) {
         $this->id = $id;
         $this->musee_name = $musee_name;
         $this->location = $location;
-        $this->time = $time;
         $this->date = $date;
-        $this->ticket_type = $ticket_type;
-        $this->disponible = $disponible;
+        $this->time = $time;
         $this->price = $price;
+        $this->disponible = $disponible;
+        $this->category = $category;
     }
 
-    public function getid() : ?int
-    {
+    // Getters and Setters
+
+    public function getId(): ?int {
         return $this->id;
     }
-    public function setid($id): void
-    {
+
+    public function setId(?int $id): void {
         $this->id = $id;
     }
-    public function getmusee_name() : string
-    {
+
+    public function getMusee_name(): ?string {
         return $this->musee_name;
     }
-    public function setmusee_name($musee_name): void
-    {
+
+    public function setMusee_name(?string $musee_name): void {
         $this->musee_name = $musee_name;
     }
-    public function getlocation() : string
-    {
+
+    public function getLocation():?string {
         return $this->location;
     }
-    public function setlocation($location): void
-    {
+
+    public function setLocation(?string $location): void {
         $this->location = $location;
-    }   
-    public function gettime() : DateTime
-    {
-        return $this->time;
     }
-    public function settime( DateTime $time ): void
-    {
-        $this->time = $time;
-    }
-    public function getdate() : ?DateTime
-    {
+
+    public function getDate(): ?DateTime {
         return $this->date;
     }
-    public function setdate( ?DateTime $date ): void
-    {
+
+    public function setDate(?DateTime $date): void {
         $this->date = $date;
     }
-    public function getticket_type() : string
-    {
-        return $this->ticket_type;
+
+    public function getTime(): ?DateTime {
+        return $this->time;
     }
-    public function setticket_type($ticket_type): void
-    {
-        $this->ticket_type = $ticket_type;
+
+    public function setTime(?DateTime $time): void {
+        $this->time = $time;
     }
-    public function isdisponible() : bool
-    {
-        return $this->disponible;
-    }
-    public function setdisponible( bool $disponible ): void
-    {
-        $this->disponible = $disponible;
-    }
-    public function getprice() : float
-    {
+
+    public function getPrice(): ?float {
         return $this->price;
     }
-    public function setprice($price): void
-    {
+
+    public function setPrice(float $price): void {
         $this->price = $price;
     }
+
+    public function isDisponible(): bool {
+        return $this->disponible;
+    }
+
+    public function setDisponible(bool $disponible): void {
+        $this->disponible = $disponible;
+    }
+
+    public function getCategory(): ?string {
+        return $this->category;
+    }
+
+    public function setCategory(?string $category): void {
+        $this->category = $category;
+    }
 }
+
 ?>

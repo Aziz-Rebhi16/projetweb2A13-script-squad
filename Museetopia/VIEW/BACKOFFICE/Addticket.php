@@ -1,60 +1,69 @@
 <?php
-include '../../CONTROLLER/MuseetopiaController.php';
 
-use museetopia\MuseetopiaController;
+include '../../controller/TicketController.php';
+
 
 $error = "";
-$add = null;
-$addController = new MuseetopiaController();
 
-function validerFormulaire() {
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        echo "Form submitted successfully!";
-        if (isset($_POST['musee_name']) && isset($_POST['location']) && isset($_POST['time']) && isset($_POST['date']) && isset($_POST['price']) && isset($_POST['ticket_type']) && isset($_POST['disponible'])) {
-            $musee_name = $_POST['musee_name'];
-            $location = $_POST['location'];
-            $time = $_POST['time'];
-            $date = $_POST['date'];
-            $price = $_POST['price'];
-            $ticket_type = $_POST['ticket_type'];
-            $disponible = isset($_POST['disponible']) ? true : false;
-            $add = new ticket(null, $musee_name, $location, $time, $date, $ticket_type, $disponible, $price);
+$ticket= null;
+// create an instance of the controller
+$ticketController = new TicketController();
 
-            global $addController;
-            $addController->addticket($add);
-            header('Location: ticketList.php');
-            exit(); // Ensure no further code is executed after redirect
-        } else {
-            global $error;
-            $error = "Missing information";
-        }
-    }
+
+if (
+    isset($_POST["musee_name"])  && $_POST["location"] && $_POST["date"] && $_POST["time"] && $_POST["price"]  && $_POST["category"]
+) {
+    if (
+        !empty($_POST["musee_name"])  && !empty($_POST["location"]) && !empty($_POST["date"]) && !empty($_POST["time"]) && !empty($_POST["price"]) && !empty($_POST["category"])
+    
+    ) {
+        $disponible = isset($_POST['disponible']) ? true : false;
+        $ticket = new Ticket(
+            null,
+            $_POST['musee_name'],
+            $_POST['location'],
+            new DateTime($_POST['date']),
+            new DateTime($_POST['time']),
+            $_POST['price'],
+            $disponible,
+            $_POST['category']
+        );
+        //
+            
+        $ticketController->addTicket($ticket);
+
+       header('Location:ticketList.php');
+    } else
+        $error = "Missing information";
 }
 
+
+
+
 ?>
-
-
 <!DOCTYPE html>
-<html lang="eg">
-<>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit = no">
-    <meta name="description" content="Add ticket">
-    <meta name="author" content="Museetopia">
+<html lang="en">
+    <head>
 
-    <title>Add ticket-dashboard</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
     
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <title>Add Ticket - Dashboard</title>
+    
+        <!-- Custom fonts for this template-->
+        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
-
-            <link href="css/sb-admin-2.min.css" rel="stylesheet">
     
+        <!-- Custom styles for this template-->
+        <link href="css/sb-admin-2.min.css" rel="stylesheet">
     
-</head>
-<body id="page-top">
+    </head>
+    <body id="page-top">
 
         <!-- Page Wrapper -->
         <div id="wrapper">
@@ -81,7 +90,7 @@ function validerFormulaire() {
                 <li class="nav-item active">
                     <a class="nav-link" href="ticketList.php">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>ticket List</span></a>
+                        <span>Ticket List</span></a>
                 </li>
     
     
@@ -102,9 +111,9 @@ function validerFormulaire() {
                             <i class="fa fa-bars"></i>
                         </button>
     
-                       
+                    
     
-                       
+                    
     
                     </nav>
                     <!-- End of Topbar -->
@@ -114,8 +123,8 @@ function validerFormulaire() {
     
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800">Add a ticket</h1>
-                                  </div>
+                            <h1 class="h3 mb-0 text-gray-800">Add a Ticket</h1>
+                                </div>
     
                         <!-- Content Row -->
                         <div class="row">
@@ -127,25 +136,25 @@ function validerFormulaire() {
                                         <div class="row no-gutters align-items-center">
                                             
                                             <form id="addTicketForm" action="" method="POST">
-                                                <label for="musee_name">musee_name:</label><br>
+                                                <label for="musee_name">Musee Name:</label><br>
                                                 <input class="form-control form-control-user" type="text" id="musee_name" name="musee_name" >
                                                 <span id="musee_name_error"></span><br>
-                                             
+                                            
                                         
-                                                <label for="location">location:</label><br>
+                                                <label for="location">Location:</label><br>
                                                 <input class="form-control form-control-user" type="text" id="location" name="location" >
                                                 <span id="location_error"></span><br>
-                                        
-                                                <label for="time">time:</label><br>
-                                                <input class="form-control form-control-user" type="time" id="time" name="time" >
-                                                <span id="time_error"></span><br>
                                         
                                                 <label for="date"> Date:</label><br>
                                                 <input class="form-control form-control-user" type="date" id="date" name="date" >
                                                 <span id="date_error"></span><br>
                                         
+                                                <label for="time">Time:</label><br>
+                                                <input class="form-control form-control-user" type="time" id="time" name="time" >
+                                                <span id="time_error"></span><br>
+                                        
                                                 <label for="price">Price :</label><br>
-                                                <input class="form-control form-control-user"  type="number" id="price" name="price" step="0.01" >
+                                                <input class="form-control form-control-user"  type="number" id="price" name="price" step="0.5" >
                                                 <span id="price_error"></span><br>
                                         
                                                 
@@ -156,24 +165,23 @@ function validerFormulaire() {
                                                             </label>
                                                     </div>
                                                 </div>
-                                                <label for="ticket_type">ticket_type:</label><br>
-                                                <select class="form-control form-control-user" id="ticket_type" name="ticket_type" >
-                                                    <option value="student">student</option>
-                                                    <option value="child">child</option>
-                                                    <option value="group">group</option>
+                                                <label for="category">Category:</label><br>
+                                                <select class="form-control form-control-user" id="category" name="category" >
+                                                    <option value="student">Student</option>
+                                                    <option value="child">Child</option>
+                                                    <option value="groupe">Groupe</option>
                                                     
                                                 </select>
                                            <br>
                                         
-                                           <button type="submit" 
-                                           class="btn btn-primary btn-user btn-block" 
-                                           name="submit" 
-                                           onclick="alert('Submit button clicked')">Add Ticket</button>
-
+                                                <button type="submit" 
+                                                class="btn btn-primary btn-user btn-block" 
+                                                onClick="validerFormulaire()"
+                                                >Add Ticket</button> 
                                                 <!-- <button type="submit" 
                                                 class="btn btn-primary btn-user btn-block" 
                                                 
-                                                >Add ticket</button> -->
+                                                >Add Offer</button> -->
                                             </form>
                                         </div>
                                     </div>
@@ -207,7 +215,7 @@ function validerFormulaire() {
         <a class="scroll-to-top rounded" href="#page-top">
             <i class="fas fa-angle-up"></i>
         </a>
-        <script src="js/addticket.js"></script>
+        <script src="js/addOffer.js"></script>
     
         <!-- Bootstrap core JavaScript-->
         <script src="vendor/jquery/jquery.min.js"></script>

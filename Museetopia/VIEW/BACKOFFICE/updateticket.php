@@ -1,37 +1,42 @@
 <?php
 
-include '../../controller/MuseetopiaController.php';
+include '../../controller/TicketController.php';
 
-use museetopia\MuseetopiaController;
 
 $error = "";
 
-$offre = null;
-$MuseetopiaC = new MuseetopiaController();
+$ticket= null;
+// create an instance of the controller
+$ticketController = new TicketController();
 
-if(
-    isset($_POST['musee_name']) &&  isset($_POST['location']) && isset($_POST['time']) && isset($_POST['date']) && isset($_POST['ticket_type']) && isset($_POST['disponible']) && isset($_POST['price'])
-){
-    if(
-        !empty($_POST['musee_name']) &&  !empty($_POST['location']) && !empty($_POST['time']) && !empty($_POST['date']) && !empty($_POST['ticket_type']) && !empty($_POST['disponible']) && !empty($_POST['price'])
-    ){
-        $dispobnible = isset($post['disponible']) ? 1 : 0;
-        $offre = new ticket(
+
+if (
+    isset($_POST["musee_topia"])  && $_POST["location"] && $_POST["date"] && $_POST["time"] && $_POST["price"] && $_POST["category"]
+) {
+    if (
+        !empty($_POST["musee_name"])  && !empty($_POST["location"]) && !empty($_POST["date"]) && !empty($_POST["time"]) && !empty($_POST["price"])  && !empty($_POST["category"])
+    
+    ) {
+        $disponible = isset($_POST['disponible']) ? true : false;   
+        $ticket = new ticket(
             null,
             $_POST['musee_name'],
             $_POST['location'],
-            $_POST['time'],
-            $_POST['date'],
-            $_POST['ticket_type'],
-            $dispobnible,
-            $_POST['price']
+            new DateTime($_POST['date']),
+            new DateTime($_POST['time']),
+            $_POST['price'],
+            $disponible ,
+            $_POST['category']
         );
-        $MuseetopiaC->updateticket($offre, $_POST['id']);
-        header('Location:ticketList.php');
-    }else{
+        
+        $ticketController->updateTicket($ticket, $_POST['id']);
+
+    header('Location:ticketList.php');
+    } else
         $error = "Missing information";
-    }
 }
+
+
 
 ?>
 <!DOCTYPE html>
@@ -105,9 +110,6 @@ if(
                             <i class="fa fa-bars"></i>
                         </button>
     
-                       
-    
-                       
     
                     </nav>
                     <!-- End of Topbar -->
@@ -118,7 +120,7 @@ if(
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
                             <h1 class="h3 mb-0 text-gray-800">Update the ticket with Id = <?php echo $_POST['id'] ?> </h1>
-                                  </div>
+                                </div>
     
                         <!-- Content Row -->
                         <div class="row">
@@ -130,54 +132,53 @@ if(
                                         <div class="row no-gutters align-items-center">
                                         <?php
     if (isset($_POST['id'])) {
-        $offer = $offerController->showticket($_POST['id']);
-       
+        $ticket = $ticketController->showticket($_POST['id']);
     ?>
-                                            <form id="AddticketForm" action="" method="POST">
-                                            <label for="id">ID ticket:</label><br>
+                                            <form id="addTicketForm" action="" method="POST">
+                                            <label for="id">ID Ticket:</label><br>
                                             <input class="form-control form-control-user" type="text" id="id" name="id" readonly value="<?php echo $_POST['id'] ?>">
-                                                <label for="musee_name">musee_name:</label><br>
-                                                <input class="form-control form-control-user" type="text" id="musee_name" name="musee_name" value="<?php echo $offer['musee_name'] ?>" >
+                                                <label for="musee_name">Musee Name:</label><br>
+                                                <input class="form-control form-control-user" type="text" id="musee_name" name="musee_name" value="<?php echo $ticket['musee_name'] ?>" >
                                                 <span id="musee_name_error"></span><br>
-                                             
+                                            
                                         
-                                                <label for="location">location:</label><br>
-                                                <input class="form-control form-control-user" type="text" id="location" name="location" value="<?php echo $offer['location'] ?>" >
+                                                <label for="location">Location:</label><br>
+                                                <input class="form-control form-control-user" type="text" id="location" name="location" value="<?php echo $ticket['location'] ?>" >
                                                 <span id="location_error"></span><br>
                                         
-                                                <label for="time">time:</label><br>
-                                                <input class="form-control form-control-user" type="date" id="time" name="time" value="<?php echo $offer['time'] ?>" >
-                                                <span id="time_error"></span><br>
-                                        
-                                                <label for="date"> Date:</label><br>
-                                                <input class="form-control form-control-user" type="date" id="date" name="date" value="<?php echo $offer['date'] ?>">
+                                                <label for="date">Date:</label><br>
+                                                <input class="form-control form-control-user" type="date" id="date" name="date" value="<?php echo $ticket['date'] ?>" >
                                                 <span id="date_error"></span><br>
                                         
+                                                <label for="time">Time:</label><br>
+                                                <input class="form-control form-control-user" type="time" id="time" name="time" value="<?php echo $ticket['time'] ?>">
+                                                <span id="time_error"></span><br>
+                                        
                                                 <label for="price">Price :</label><br>
-                                                <input class="form-control form-control-user"  type="number" id="price" name="price" step="0.01" value="<?php echo $offer['price'] ?>">
+                                                <input class="form-control form-control-user"  type="number" id="price" name="price" step="0.5" value="<?php echo $ticket['price'] ?>">
                                                 <span id="price_error"></span><br>
                                         
                                                 
                                                 <div class="form-group">
                                                     <div class="custom-control custom-checkbox small">
-                                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="disponible"  <?php echo (isset($offer['disponible']) && $offer['disponible'] == 1) ? 'checked' : ''; ?> >
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="disponible"  <?php echo (isset($ticket['disponible']) && $ticket['disponible'] == 1) ? 'checked' : ''; ?> >
                                                         <label class="custom-control-label" for="customCheck">Availability
                                                             </label>
                                                     </div>
                                                 </div>
-                                                <label for="ticket_type">ticket_type:</label><br>
-                                                <select class="form-control form-control-user" id="ticket_type" name="ticket_type" >
-                                                    <option value="student">student</option>
-                                                    <option value="child">child</option>
-                                                    <option value="group">group</option>
+                                                <label for="category">Category:</label><br>
+                                                <select class="form-control form-control-user" type="text" id="category" name="category" value="<?php echo $ticket['category'] ?>">
+                                                    <option value="student">Student</option>
+                                                    <option value="child">Child</option>
+                                                    <option value="groupe">Groupe</option>
                                                     
                                                 </select>
-                                           <br>
+                                            <br>
                                         
                                                 <button type="submit" 
                                                 class="btn btn-primary btn-user btn-block" 
                                                 onClick="validerFormulaire()"
-                                                >Add Ticket</button> 
+                                                >Update Ticket</button> 
                                                 <!-- <button type="submit" 
                                                 class="btn btn-primary btn-user btn-block" 
                                                 
@@ -191,34 +192,32 @@ if(
                                 </div>
                             </div>
     
-                          
+                        
                         </div>
     
-                      
+                    
     
                     </div>
-                   
+                
     
                 </div>
-               
+            
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; MuseeTopia 2025</span>
+                            <span>Copyright &copy; Museetopia 2025</span>
                         </div>
                     </div>
                 </footer>
-              
+            
     
             </div>
-         
-
-        </div>
-       
+        
+        
         <a class="scroll-to-top rounded" href="#page-top">
             <i class="fas fa-angle-up"></i>
         </a>
-        <script src="js/addticket.js"></script>
+        <script src="js/addOffer.js"></script>
     
         <!-- Bootstrap core JavaScript-->
         <script src="vendor/jquery/jquery.min.js"></script>
@@ -230,12 +229,7 @@ if(
         <!-- Custom scripts for all pages-->
         <script src="js/sb-admin-2.min.js"></script>
     
-        <!-- Page level plugins -->
-        <script src="vendor/chart.js/Chart.min.js"></script>
-    
-        <!-- Page level custom scripts -->
-        <script src="js/demo/chart-area-demo.js"></script>
-        <script src="js/demo/chart-pie-demo.js"></script>
+
     
     </body>
 

@@ -1,9 +1,7 @@
 <?php
-include '../../controller/MuseetopiaController.php';
-use museetopia\MuseetopiaController;
-$MuseetopiaC = new MuseetopiaController();
-$list = $MuseetopiaC->listticket();
-
+include '../../controller/TicketController.php';
+$ticketC = new TicketController();
+$list = $ticketC->listTicket();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,9 +49,9 @@ $list = $MuseetopiaC->listticket();
                         <span>Dashboard</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="Addticket.php">
+                    <a class="nav-link" href="addTicket.php">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Add ticket </span></a>
+                        <span>Add Ticket </span></a>
                 </li>
     
              
@@ -106,34 +104,33 @@ $list = $MuseetopiaC->listticket();
                                                         <th>ID</th>
                                                         <th>Musee Name</th>
                                                         <th>Location</th>
-                                                        <th>Time</th>
                                                         <th>Date</th>
+                                                        <th>Time</th>
                                                         <th>Price</th>
                                                         <th>Availability</th>
-                                                        <th>Ticket Type</th>
+                                                        <th>Category</th>
                                                         <th colspan="2">Actions</th>
                                                     </tr>
                                               
                                                 <?php
-        foreach ($list as $offer) {
+        foreach ($list as $ticket) {
         ?> <tr>
-         <td><?= $offer->id; ?></td>
-            <td><?= $offer->musee_name; ?></td>
-            <td><?= $offer->location; ?></td>
-            <td><?= $offer->name; ?></td>
-            <td><?= $offer->date; ?></td>
-            <td><?= $offer->price; ?></td>
-            <td><?= $offer->disponible; ?></td>
-            <td><?= $offer->ticket_type; ?></td>
-            <td align="center">
-                <form method="POST" action="updatetticket.php">
-                    <input type="submit" name="update" value="Update">
-                    <input type="hidden" value=<?PHP echo $offer->id; ?> name="id">
+         <td><?= $ticket['id']; ?></td>
+            <td><?= $ticket['musee_name']; ?></td>
+            <td><?= $ticket['location']; ?></td>
+            <td><?= $ticket['date']; ?></td>
+            <td><?= $ticket['time']; ?></td>
+            <td><?= $ticket['price']; ?></td>
+            <td><?= $ticket['disponible'] ? "yes" : "no"; ?></td>
+            <td><?= $ticket['category']; ?></td>
+            <td class="btn-group">
+                <form method="POST" action="updateTicket.php">
+                    <input class="btn btn-outline-info" type="submit" name="update" value="Update">
+                    <input  type="hidden" value=<?PHP echo $ticket['id']; ?> name="id">
                 </form>
+                <a class="btn btn-outline-danger" href="deleteTicket.php?id=<?php echo $ticket['id']; ?>">Delete</a>
             </td>
-            <td>
-                <a href="deleteticket.php?id=<?php echo $offer->id; ?>">Delete</a>
-            </td>
+
             </tr>
         <?php
     }
@@ -173,7 +170,7 @@ $list = $MuseetopiaC->listticket();
         <a class="scroll-to-top rounded" href="#page-top">
             <i class="fas fa-angle-up"></i>
         </a>
-        <script src="js/addticket.js"></script>
+        <script src="js/addOffer.js"></script>
     
         <!-- Bootstrap core JavaScript-->
         <script src="vendor/jquery/jquery.min.js"></script>
