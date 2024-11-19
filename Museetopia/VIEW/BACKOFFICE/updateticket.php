@@ -11,11 +11,10 @@ $ticketController = new TicketController();
 
 
 if (
-    isset($_POST["musee_topia"])  && $_POST["location"] && $_POST["date"] && $_POST["time"] && $_POST["price"] && $_POST["category"]
+    isset($_POST["musee_name"]) && isset($_POST["location"]) && isset($_POST["date"]) && isset($_POST["time"]) && isset($_POST["price"]) && isset($_POST["category"])
 ) {
     if (
-        !empty($_POST["musee_name"])  && !empty($_POST["location"]) && !empty($_POST["date"]) && !empty($_POST["time"]) && !empty($_POST["price"])  && !empty($_POST["category"])
-    
+        !empty($_POST["musee_name"]) && !empty($_POST["location"]) && !empty($_POST["date"]) && !empty($_POST["time"]) && !empty($_POST["price"]) && !empty($_POST["category"])
     ) {
         $disponible = isset($_POST['disponible']) ? true : false;   
         $ticket = new ticket(
@@ -25,15 +24,16 @@ if (
             new DateTime($_POST['date']),
             new DateTime($_POST['time']),
             $_POST['price'],
-            $disponible ,
+            $disponible,
             $_POST['category']
         );
         
         $ticketController->updateTicket($ticket, $_POST['id']);
 
-    header('Location:ticketList.php');
-    } else
+        header('Location:ticketList.php');
+    } else {
         $error = "Missing information";
+    }
 }
 
 
