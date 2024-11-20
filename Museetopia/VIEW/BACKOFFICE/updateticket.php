@@ -71,7 +71,7 @@ if (
     
                 <!-- Sidebar - Brand -->
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                    
+                <img src="..\FRONTOFFICE\assets\images\logo-museetopia.png" alt="logo" style="width: 80px; height: 80px;">
                     <div class="sidebar-brand-text mx-3">Museetopia <sup></sup></div>
                 </a>
     

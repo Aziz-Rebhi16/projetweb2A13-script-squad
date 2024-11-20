@@ -35,7 +35,7 @@ $list = $ticketC->listTicket();
     
                 <!-- Sidebar - Brand -->
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                    
+                <img src="..\FRONTOFFICE\assets\images\logo-museetopia.png" alt="logo" style="width: 80px; height: 80px;">
                     <div class="sidebar-brand-text mx-3">Museetopia <sup></sup></div>
                 </a>
     
@@ -44,9 +44,9 @@ $list = $ticketC->listTicket();
     
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="../FRONTOFFICE/accueil.php">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Dashboard</span></a>
+                        <span>Accueil</span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="addTicket.php">

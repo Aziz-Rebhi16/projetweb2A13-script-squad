@@ -1,3 +1,8 @@
+<?php
+include '../../CONTROLLER/TicketController.php';
+$ticketC = new TicketController();
+$list = $ticketC->listTicket();
+?>
 <!doctype html>
 <html lang="en">
     <head>
@@ -7,7 +12,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Barista Cafe HTML CSS Template</title>
+        <title>Museetopia</title>
 
         <!-- CSS FILES -->                
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,8 +46,8 @@ Bootstrap 5 HTML CSS Template
                 <nav class="navbar navbar-expand-lg">                
                     <div class="container">
                         <a class="navbar-brand d-flex align-items-center" href="index.html">
-                            <img src="assets/images/coffee-beans.png" class="navbar-brand-image img-fluid" alt="Barista Cafe Template">
-                            Barista
+                            <img src="assets\images\logo-museetopia.png" class="navbar-brand-image img-fluid" alt="Barista Cafe Template">
+                            Museetopia
                         </a>
         
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,11 +65,11 @@ Bootstrap 5 HTML CSS Template
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link click-scroll" href="#section_3">Our Menu</a>
+                                    <a class="nav-link click-scroll" href="#section_3">Our Ticket</a>
                                 </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link click-scroll" href="#section_4">Reviews</a>
+                                <li class="nav-item mx-0 mx-lg-1">
+                                    <a class="nav-link py-3 px-0 px-lg-3 rounded" href="../BACKOFFICE/ticketList.php">Dashboard</a>
                                 </li>
 
                                 <li class="nav-item">
@@ -89,19 +94,19 @@ Bootstrap 5 HTML CSS Template
                         <div class="row align-items-center">
 
                             <div class="col-lg-6 col-12 mx-auto">
-                                <em class="small-text">welcome to Barista.co</em>
+                                <em class="small-text">welcome to </em>
                                 
-                                <h1>Cafe Klang</h1>
+                                <h1>Museetopia</h1>
 
                                 <p class="text-white mb-4 pb-lg-2">
-                                    your <em>favourite</em> coffee daily lives.
+                                    your <em>favourite</em> Place
                                 </p>
 
                                 <a class="btn custom-btn custom-border-btn smoothscroll me-3" href="#section_2">
                                     Our Story
                                 </a>
 
-                                <a class="btn custom-btn smoothscroll me-2 mb-2" href="#section_3"><strong>Check Menu</strong></a>
+                                <a class="btn custom-btn smoothscroll me-2 mb-2" href="#section_3"><strong>Check Ticket</strong></a>
                             </div>
 
                         </div>
@@ -125,23 +130,23 @@ Bootstrap 5 HTML CSS Template
                                     </video>
 
                                     <div class="about-video-info d-flex flex-column">
-                                        <h4 class="mt-auto">We Started Since 2009.</h4>
+                                        <h4 class="mt-auto">We Started Since 2024.</h4>
 
-                                        <h4>Best Cafe in Klang.</h4>
+                                        <h4>Best Tourism WebSite.</h4>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-lg-5 col-12 mt-4 mt-lg-0 mx-auto">
-                                <em class="text-white">Barista.co</em>
+                                <em class="text-white">Museetopia</em>
 
-                                <h2 class="text-white mb-3">Cafe KL</h2>
+                                <h2 class="text-white mb-3">Tourist Guide</h2>
 
-                                <p class="text-white">The café had been in the town for as long as anyone could remember, and it had become a beloved institution among the locals.</p>
+                                <p class="text-white">The site is new in the town and it becomed a beloved institution among the locals.</p>
 
-                                <p class="text-white">The café was run by a friendly and hospitable couple, Mr. and Mrs. Johnson. Barista Cafe is free Bootstrap 5 HTML layout provided by <a rel="nofollow" href="https://www.tooplate.com" target="_blank">Tooplate</a>.</p>
+                                <p class="text-white">The website was created and  provided by <a rel="nofollow" href="https://www.tooplate.com" target="_blank">script squad</a>.</p>
 
-                                <a href="#barista-team" class="smoothscroll btn custom-btn custom-border-btn mt-3 mb-4">Meet Baristas</a>
+                                <a href="#barista-team" class="smoothscroll btn custom-btn custom-border-btn mt-3 mb-4">Meet script squad</a>
                             </div>
 
                         </div>
@@ -154,7 +159,7 @@ Bootstrap 5 HTML CSS Template
                         <div class="row justify-content-center">
 
                             <div class="col-lg-12 col-12 text-center mb-4 pb-lg-2">
-                                <em class="text-white">Creative Baristas</em>
+                                <em class="text-white">Creative Museetopia</em>
 
                                 <h2 class="text-white">Meet People</h2>
                             </div>
@@ -186,7 +191,7 @@ Bootstrap 5 HTML CSS Template
                                             <p class="badge ms-4"><em>Manager</em></p>
                                         </div>
 
-                                        <p class="text-white mb-0">your favourite coffee daily lives.</p>
+                                        <p class="text-white mb-0">your favourite  daily lives.</p>
                                     </div>
 
                                     <div class="team-block-image-wrap">
@@ -219,10 +224,10 @@ Bootstrap 5 HTML CSS Template
                                         <div class="d-flex mt-auto mb-3">
                                             <h4 class="text-white mb-0">Michelle</h4>
 
-                                            <p class="badge ms-4"><em>Barista</em></p>
+                                            <p class="badge ms-4"><em>Museetopia</em></p>
                                         </div>
 
-                                        <p class="text-white mb-0">your favourite coffee daily consectetur.</p>
+                                        <p class="text-white mb-0">your favourite place to visit.</p>
                                     </div>
 
                                     <div class="team-block-image-wrap">
@@ -236,182 +241,34 @@ Bootstrap 5 HTML CSS Template
                 </section>
 
 
-                <section class="menu-section section-padding" id="section_3">
+                
+
+                        <?php
+                        foreach($list as $ticket){
+                        ?>
+                        <section class="menu-section section-padding" id="section_3">
                     <div class="container">
                         <div class="row">
-
                             <div class="col-lg-6 col-12 mb-4 mb-lg-0">
                                 <div class="menu-block-wrap">
                                     <div class="text-center mb-4 pb-lg-2">
-                                        <em class="text-white">Delicious Menu</em>
-                                        <h4 class="text-white">Breakfast</h4>
-                                    </div>
-
-                                    <div class="menu-block">
-                                        <div class="d-flex">
-                                            <h6>Pancakes</h6>
-                                        
-                                            <span class="underline"></span>
-
-                                            <strong class="ms-auto">$12.50</strong>
-                                        </div>
-
-                                        <div class="border-top mt-2 pt-2">
-                                            <small>Fresh brewed coffee and steamed milk</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="menu-block my-4">
-                                        <div class="d-flex">
-                                            <h6>
-                                                Toasted Waffle
-                                            </h6>
-                                        
-                                            <span class="underline"></span>
-
-                                            <strong class="text-white ms-auto"><del>$16.50</del></strong>
-
-                                            <strong class="ms-2">$12.00</strong>
-                                        </div>
-
-                                        <div class="border-top mt-2 pt-2">
-                                            <small>Brewed coffee and steamed milk</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="menu-block">
-                                        <div class="d-flex">
-                                            <h6>Fried Chips
-                                                <span class="badge ms-3">Recommend</span>
-                                            </h6>
-                                        
-                                            <span class="underline"></span>
-
-                                            <strong class="ms-auto">$15.0</strong>
-                                        </div>
-
-                                        <div class="border-top mt-2 pt-2">
-                                            <small>Rich Milk and Foam</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="menu-block my-4">
-                                        <div class="d-flex">
-                                            <h6>Pancakes</h6>
-                                        
-                                            <span class="underline"></span>
-
-                                            <strong class="ms-auto">$12.50</strong>
-                                        </div>
-
-                                        <div class="border-top mt-2 pt-2">
-                                            <small>Fresh brewed coffee and steamed milk</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="menu-block">
-                                        <div class="d-flex">
-                                            <h6>Banana Cakes</h6>
-                                        
-                                            <span class="underline"></span>
-
-                                            <strong class="ms-auto">$18.0</strong>
-                                        </div>
-
-                                        <div class="border-top mt-2 pt-2">
-                                            <small>Rich Milk and Foam</small>
-                                        </div>
+                                        <em class="text-white">best place to visit</em>
+                                        <h4> <?php echo $ticket['location']; ?></h4>
+                                        <p class="text-white ms-auto"><?php echo $ticket['location']; ?></p>
+                                        <p class="text-white ms-auto">Price: <?php echo $ticket['price']; ?> $</p></h4>
                                     </div>
                                 </div>
+                                    
                             </div>
-
-                            <div class="col-lg-6 col-12">
-                                <div class="menu-block-wrap">
-                                    <div class="text-center mb-4 pb-lg-2">
-                                        <em class="text-white">Favourite Menu</em>
-                                        <h4 class="text-white">Coffee</h4>
-                                    </div>
-
-                                    <div class="menu-block">
-                                        <div class="d-flex">
-                                            <h6>Latte</h6>
-                                        
-                                            <span class="underline"></span>
-
-                                            <strong class="text-white ms-auto"><del>$12.50</del></strong>
-
-                                            <strong class="ms-2">$7.50</strong>
-                                        </div>
-
-                                        <div class="border-top mt-2 pt-2">
-                                            <small>Fresh brewed coffee and steamed milk</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="menu-block my-4">
-                                        <div class="d-flex">
-                                            <h6>
-                                                White Coffee
-                                                <span class="badge ms-3">Recommend</span>
-                                            </h6>
-                                        
-                                            <span class="underline"></span>
-
-                                            <strong class="ms-auto">$5.90</strong>
-                                        </div>
-
-                                        <div class="border-top mt-2 pt-2">
-                                            <small>Brewed coffee and steamed milk</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="menu-block">
-                                        <div class="d-flex">
-                                            <h6>Chocolate Milk</h6>
-                                        
-                                            <span class="underline"></span>
-
-                                            <strong class="ms-auto">$5.50</strong>
-                                        </div>
-
-                                        <div class="border-top mt-2 pt-2">
-                                            <small>Rich Milk and Foam</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="menu-block my-4">
-                                        <div class="d-flex">
-                                            <h6>Greentea</h6>
-                                        
-                                            <span class="underline"></span>
-
-                                            <strong class="ms-auto">$7.50</strong>
-                                        </div>
-
-                                        <div class="border-top mt-2 pt-2">
-                                            <small>Fresh brewed coffee and steamed milk</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="menu-block">
-                                        <div class="d-flex">
-                                            <h6>Dark Chocolate</h6>
-                                        
-                                            <span class="underline"></span>
-
-                                            <strong class="ms-auto">$7.25</strong>
-                                        </div>
-
-                                        <div class="border-top mt-2 pt-2">
-                                            <small>Rich Milk and Foam</small>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-
-                        </div>
                     </div>
                 </section>
+                            <?php
+                            }
+                            ?>
+
+                            
+                        
 
 
                 <section class="reviews-section section-padding section-bg" id="section_4">
@@ -582,22 +439,22 @@ Bootstrap 5 HTML CSS Template
 
                                 <strong class="text-white">
                                     <i class="bi-geo-alt me-2"></i>
-                                    Bandra West, Mumbai, Maharashtra 400050, India
+                                    Technological Pole - El Ghazala
                                 </strong>
 
                                 <ul class="social-icon mt-4">
                                     <li class="social-icon-item">
-                                        <a href="#" class="social-icon-link bi-facebook">
+                                        <a href="https://www.facebook.com/profile.php?id=100009109830044" class="social-icon-link bi-facebook" target="_blank">
                                         </a>
                                     </li>
         
                                     <li class="social-icon-item">
-                                        <a href="https://x.com/minthu" target="_new" class="social-icon-link bi-twitter">
+                                        <a href="https://x.com/AZIZREBHI7?t=MSXCNGKgc3h1UsyUsoKCkQ&s=09" target="_new" class="social-icon-link bi-twitter" target="_blank">
                                         </a>
                                     </li>
 
                                     <li class="social-icon-item">
-                                        <a href="#" class="social-icon-link bi-whatsapp">
+                                        <a href="https://www.instagram.com/rebhiaziz/?hl=fr" class="social-icon-link bi-instagram" target="_blank">
                                         </a>
                                     </li>
                                 </ul>
@@ -608,7 +465,7 @@ Bootstrap 5 HTML CSS Template
 
                                 <p class="d-flex mb-1">
                                     <strong class="me-2">Phone:</strong>
-                                    <a href="tel: 305-240-9671" class="site-footer-link">
+                                    <a href="tel: 30-240-961" class="site-footer-link">
                                         (+216) 
                                         27 571 808
                                     </a>
@@ -618,7 +475,7 @@ Bootstrap 5 HTML CSS Template
                                     <strong class="me-2">Email:</strong>
 
                                     <a href="mailto:info@yourgmail.com" class="site-footer-link">
-                                        hello@barista.co
+                                        aziz.rebhi@esprit.tn
                                     </a>
                                 </p>
                             </div>
@@ -652,8 +509,7 @@ Bootstrap 5 HTML CSS Template
                             </div>
 
                             <div class="col-lg-8 col-12 mt-4">
-                                <p class="copyright-text mb-0">Copyright © Barista Cafe 2048 
-                                    - Design: <a rel="sponsored" href="https://www.tooplate.com" target="_blank">Tooplate</a></p>
+                                <p class="copyright-text mb-0">Copyright © Museetopia 2048 
                             </div>
                     </div>
                 </footer>
