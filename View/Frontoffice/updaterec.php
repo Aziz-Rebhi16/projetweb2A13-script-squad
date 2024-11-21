@@ -28,8 +28,13 @@ if (
             $_POST['description']
         );
 
-        
+         
+
         $reclamationController->update_rec($reclamation,$id_rec);
+
+    
+            
+
 
         
         header('Location: ../../View/Backoffice/pages/tables.php');
@@ -124,6 +129,18 @@ if (
                                 <?php
     if (isset($_GET['id_rec'])) {
         $reclamation = $reclamationController->show_rec($_GET['id_rec']);
+
+        $sujetOptions = [
+            -1 => 'N/A',
+            0 => 'Difficultés de réservation : Problèmes de paiement, réservations non confirmées.',
+            1 => 'Problèmes techniques : Lenteur du site, bugs pendant l'.'utilisation.',
+            2 => 'Informations incorrectes : Horaires, tarifs ou événements mal affichés.',
+            3 => 'Délai de traitement des réclamations : Réponses tardives aux réclamations.',
+            4 => 'Plusieurs ou autre(s).'
+          ];
+          $sujet=isset($reclamation['sujet']) && isset($sujetOptions[$reclamation['sujet']]) 
+              ? $sujetOptions[$reclamation['sujet']] 
+              : 'N/A';
     
        
     ?>
@@ -134,18 +151,18 @@ if (
                                         <div class="booking-form-body row">
                                             <div class="col-lg-12">
                                                 <label for="nom">Nom :</label>
-                                                <input type="text" id="nom" name="nom" class="form-control">
+                                                <input type="text" id="nom" name="nom" class="form-control" value=<?php echo $reclamation['nom']?>>
                                             </div>
                                             <p id="errnom"></p>
                                             <div class="col-lg-12">
                                                 <label for="text">prenom:</label>
-                                                <input type="text" id="prenom" name="prenom" class="form-control">
+                                                <input type="text" id="prenom" name="prenom" class="form-control" value=<?php echo $reclamation['prenom']?>>
                                             </div>
                                             <p id="errprenom"></p>
                                             <div class="col-lg-12">
                                                 <label for="site">Le problème concerné :</label>
                                                 <select id="sujet" name="sujet" class="form-control">
-                                                    <option value=-1>Choisissez un problème:</option>
+                                                    <option value=-1><?php echo $sujet ?></option>
                                                     <option value=0>Difficultés de réservation : Problèmes de paiement, réservations non confirmées.</option>
                                                     <option value=1>Problèmes techniques : Lenteur du site, bugs pendant l'utilisation.</option>
                                                     <option value=2>Informations incorrectes : Horaires, tarifs ou événements mal affichés.</option>
@@ -156,7 +173,7 @@ if (
                                             <p id="errsujet"></p>
                                             <div class="col-lg-12">
                                                 <label for="description">Description du problème :</label>
-                                                <textarea id="description" name="description" rows="5" class="form-control"></textarea>
+                                                <textarea id="description" name="description" rows="5" class="form-control" ><?php echo $reclamation['description']?></textarea>
                                             </div>
                                             <p id="errdescription"></p>
                                             <div class="col-lg-4 mx-auto mt-2">

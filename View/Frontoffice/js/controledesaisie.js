@@ -1,8 +1,10 @@
 function validerFormulaire() {
-    const nom = document.getElementById("nom").value;
-    const prenom = document.getElementById("prenom").value;
-    const sujet = document.getElementById("sujet").value;
+    const nom = document.getElementById("nom").value.trim();
+    const prenom = document.getElementById("prenom").value.trim();
+    const sujet = document.getElementById("sujet").value.trim();
     const description = document.getElementById("description").value.trim();
+    const regex = /^[a-zA-Z]+$/;
+
 
     clearErrors();
 
@@ -11,7 +13,8 @@ function validerFormulaire() {
     if (nom.length < 3) {
         document.getElementById("errnom").innerHTML = "<span style='color : red;'>Le nom doit contenir au moins 3 caractères.</span>";
         hasErrors = true;
-    } else {
+    }
+    else {
         document.getElementById("errnom").innerHTML = "<span style='color : green;'>Correct</span>";
     }
 

@@ -403,14 +403,14 @@ $list = $reclamationController->list_rec();
             </td>
             <td class="align-middle text-center">
                 <?php 
-                    $sujetOptions = [
-                      -1 => 'N/A',
-                      0 => 'Problème technique',
-                      1 => 'Réclamation de service',
-                      2 => 'Problème de livraison',
-                      3 => 'Problème de paiement',
-                      4 => 'Autre'
-                    ];
+                   $sujetOptions = [
+                    -1 => 'N/A',
+                    0 => 'Difficultés de réservation : Problèmes de paiement, réservations non confirmées.',
+                    1 => 'Problèmes techniques : Lenteur du site, bugs pendant l'.'utilisation.',
+                    2 => 'Informations incorrectes : Horaires, tarifs ou événements mal affichés.',
+                    3 => 'Délai de traitement des réclamations : Réponses tardives aux réclamations.',
+                    4 => 'Plusieurs ou autre(s).'
+                  ];
                     echo isset($reclamation['sujet']) && isset($sujetOptions[$reclamation['sujet']]) 
                         ? $sujetOptions[$reclamation['sujet']] 
                         : 'N/A';
