@@ -16,6 +16,9 @@
 include 'C:/xampp/htdocs/Reclamation/Controller/reclamationController.php';
 $reclamationController = new reclamationController();
 $list = $reclamationController->list_rec();
+include 'C:/xampp/htdocs/Reclamation/Controller/reponseController.php';
+$reponseController = new reponseController();
+$list2 = $reponseController->list_rep();
 ?>
 
 
@@ -427,6 +430,62 @@ $list = $reclamationController->list_rec();
                     Màj
                 </a>
                 <a href="deletereclamation.php?id_rec=<?= $reclamation['id_rec']; ?>" class="text-secondary font-weight-bold text-xs ml-2" data-toggle="tooltip" title="Delete">
+                    Supprimer
+                </a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+                    
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+            <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header pb-0">
+              <h6>Réponses</h6>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2">
+              <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+    <thead>
+        <tr>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date de Réponse</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Contenu</th>
+            <th class="text-secondary opacity-7">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($list2 as $reponse): ?>
+        <tr>
+            <td>
+                <p class="text-xs text-secondary mb-0"><?= $reponse['id_rep']; ?></p>
+            </td>
+            <td class="align-middle text-center">
+                <span class="text-secondary text-xs font-weight-bold"><?= $reponse['date_rep']; ?></span>
+            </td>
+            
+            <td class="align-middle text-center">
+                <span class="text-secondary text-xs font-weight-bold"><?= $reponse['contenu_rep']; ?></span>
+            </td>
+            <td class="align-middle">
+                <a href="/reclamation/View/Frontoffice/updaterep.php?id_rec=<?= $reponse['id_rep']; ?>" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" title="Edit">
+                    Màj
+                </a>
+                <a href="deletereponse.php?id_rec=<?= $reponse['id_rep']; ?>" class="text-secondary font-weight-bold text-xs ml-2" data-toggle="tooltip" title="Delete">
                     Supprimer
                 </a>
             </td>

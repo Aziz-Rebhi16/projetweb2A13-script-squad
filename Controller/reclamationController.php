@@ -1,6 +1,6 @@
 <?php
-include(__DIR__ . '/../config.php');
-include(__DIR__ . '/../Model/reclamation.php');
+require_once(__DIR__ . '/../config.php');
+require_once(__DIR__ . '/../Model/reclamation.php');
 
 class reclamationController
 {
