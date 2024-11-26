@@ -1,33 +1,30 @@
-
-// Correction partie 3 etude de cas Partie JS
-
 document.addEventListener("DOMContentLoaded", function(){
 
-var titleElement= document.getElementById("title");
-var destinationelement= document.getElementById("destination");
+var musee_nameElement= document.getElementById("musee_name");
+var locationElement= document.getElementById("location");
 
-titleElement.addEventListener("keyup", function(){
-    var titleerrorElement= document.getElementById("title_error");
-    var titleErrorValue=titleElement.value;
-    if(titleErrorValue.length < 3) {
-        titleerrorElement.innerHTML = "Le titre doit contenir au moins 3 caractères";
-        titleerrorElement.style.color = "red";
+musee_nameElement.addEventListener("keyup", function(){
+    var musee_nameErrorElement= document.getElementById("musee_name_error");
+    var musee_nameErrorValue=musee_nameElement.value;
+    if(musee_nameErrorValue.length < 3) {
+        musee_nameErrorElement.innerHTML = "Le nom doit contenir au moins 3 caractères";
+        musee_nameErrorElement.style.color = "red";
     }
     else {
-        titleerrorElement.innerHTML = "Correct";
-        titleerrorElement.style.color = "green";
+        musee_nameErrorElement.innerHTML = "Correct";
+        musee_nameErrorElement.style.color = "green";
     }
 })
-destinationelement.addEventListener("keyup",function(){
-    var destinationErrorElement= document.getElementById("destination_error");
-    var destinationErrorValue=destinationelement.value;
+locationElement.addEventListener("keyup",function(){
+    var locationErrorElement= document.getElementById("location_error");
+    var locationErrorValue=locationElement.value;
     var pattern = /^[A-Za-z]{3,}$/
-    if(!pattern.test(destinationErrorValue)){
-        destinationErrorElement.innerHTML = "La destination doit contenir  uniquement des lettres et des espaces et au moins 3 caractères";
-        destinationErrorElement.style.color = "red";
+    if(!pattern.test(locationErrorValue)){
+        locationErrorElement.innerHTML = "La location doit contenir  uniquement des lettres et des espaces et au moins 3 caractères";
+        locationErrorElement.style.color = "red";
     }else
-    { destinationErrorElement.innerHTML = "Correct";
-        destinationErrorElement.style.color = "green";
+    { locationErrorElement.innerHTML = "Correct";
+        locationErrorElement.style.color = "green";
 
     }
 });

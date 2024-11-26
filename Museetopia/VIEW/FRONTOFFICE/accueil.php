@@ -65,11 +65,11 @@ Bootstrap 5 HTML CSS Template
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link click-scroll" href="#section_3">Our Ticket</a>
+                                    <a class="nav-link click-scroll" href="#section_3">Our Tickets</a>
                                 </li>
 
                                 <li class="nav-item mx-0 mx-lg-1">
-                                    <a class="nav-link py-3 px-0 px-lg-3 rounded" href="../BACKOFFICE/ticketList.php">Dashboard</a>
+                                    <a class="nav-link " href="../BACKOFFICE/ticketList.php">Dashboard</a>
                                 </li>
 
                                 <li class="nav-item">
@@ -124,7 +124,7 @@ Bootstrap 5 HTML CSS Template
                             <div class="col-lg-6 col-12">
                                 <div class="ratio ratio-1x1">
                                     <video autoplay="" loop="" muted="" class="custom-video" poster="">
-                                        <source src="videos/pexels-mike-jones-9046237.mp4" type="video/mp4">
+                                        <source src="assets/videos/BARDO Museum #Tunisia #Travel #4K.mp4" type="video/mp4">
 
                                         Your browser does not support the video tag.
                                     </video>
