@@ -1,0 +1,59 @@
+/* Styles pour la liste des musées dans le front-office */
+
+body {
+    background-color:  #f2f2f2; /* Couleur turquoise douce */
+}
+
+
+.museum-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Grille responsive */
+    gap: 20px; /* Espacement entre les musées */
+    padding: 20px; /* Padding autour de la liste */
+    margin-top: 20px;
+}
+
+.museum-item {
+    border: 1px solid #b0c4de; /* Remplace la bordure avec un bleu pastel */
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #eaf6f6; /* Turquoise doux pour le fond */
+    transition: transform 0.3s ease; /* Animation au survol */
+}
+
+.museum-item:hover {
+    transform: scale(1.05); /* Agrandissement au survol */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée */
+}
+
+.museum-item h3 {
+    font-size: 1.5rem;
+    color: #005f73; /* Bleu profond pour les titres */
+    margin-bottom: 10px;
+}
+
+.museum-item p {
+    font-size: 1rem;
+    color: #0a9396; /* Turquoise plus sombre pour le texte */
+    margin-bottom: 5px;
+}
+
+.museum-item strong {
+    color: #023047; /* Bleu foncé élégant pour mettre en valeur les informations */
+}
+
+/* Boutons ou liens associés */
+.museum-item a {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-top: 10px;
+    color: #ffffff;
+    background-color: #0096c7; /* Bleu turquoise vif */
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.museum-item a:hover {
+    background-color: #0077b6; /* Bleu turquoise légèrement plus foncé */
+}
