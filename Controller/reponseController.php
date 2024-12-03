@@ -31,18 +31,19 @@ class reponseController
         }
     }
 
-    function add_rep($reponse)
+    function add_rep($reponse,$id_rec)
 {
     var_dump($reponse);
-    $sql = "INSERT INTO reponse (id_rep, id_rep, date_rep, contenu_rep) 
-            VALUES (NULL, NULL, :date_rep, :contenu_rep)";
+    $sql = "INSERT INTO reponse (id_rep, id_rec, date_rep, contenu_rep) 
+            VALUES (NULL,:id_rec, :date_rep, :contenu_rep)";
     $db = config::getConnexion();
     try {
         $query = $db->prepare($sql);
         $date_rep = $reponse->getDateRep() ? $reponse->getDateRep()->format('Y-m-d') : (new DateTime())->format('Y-m-d');
         $query->execute([
             'date_rep' => $date_rep,
-            'contenu_rep'=>$reponse->getContenu()
+            'contenu_rep'=>$reponse->getContenu(),
+            'id_rec'=>$id_rec
             
         ]);
     } catch (Exception $e) {

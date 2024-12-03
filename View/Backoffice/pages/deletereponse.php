@@ -1,12 +1,12 @@
 <?php
 include 'C:/xampp/htdocs/Reclamation/Controller/reponseController.php';
 
-
+var_dump($_GET);
 if (isset($_GET["id_rep"]) && is_numeric($_GET["id_rep"])) {
     $id_rep = $_GET["id_rep"];
 
    
-    $reponseController = new reclamationController();
+    $reponseController = new reponseController();
 
     $reponseController->delete_rep($id_rep);
 

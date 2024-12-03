@@ -11,7 +11,7 @@ class reponse {
         $this->id_rec = $id_rec;
         $this->id_rep = $id_rep;
         $this->contenu_rep = $contenu_rep;
-        $this->date_rec = $date_rec;
+        $this->date_rep = $date_rep;
         
     }
 
