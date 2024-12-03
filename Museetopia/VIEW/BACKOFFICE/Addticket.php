@@ -4,7 +4,6 @@ include '../../controller/TicketController.php';
 
 
 $error = "";
-$successMessage = "";
 
 $ticket= null;
 // create an instance of the controller
@@ -30,17 +29,12 @@ if (
             $_POST['category']
         );
         
-        if ($ticketController->addTicket($ticket)) {
-            $successMessage = "Ticket added successfully!";
-        } else {
-            $error = "Error adding ticket.";
-        }
             
         $ticketController->addTicket($ticket);
 
         header('Location:Addticket.php');
     } else
-        $error = "Missing information";
+        echo $error = "Missing information";
 }
 
 
@@ -125,7 +119,7 @@ if (
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link  " href="../pages/billing.html">
+            <a class="nav-link  " href="reservationList.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                 <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>credit-card</title>
@@ -141,7 +135,7 @@ if (
                 </g>
                 </svg>
             </div>
-            <span class="nav-link-text ms-1">Billing</span>
+            <span class="nav-link-text ms-1">Reservation</span>
             </a>
         </li>
         <li class="nav-item"> 
@@ -236,6 +230,7 @@ if (
 
                                                 <label for="category">Category:</label><br>
                                                 <select class="form-control form-control-user" id="category" name="category" >
+                                                    <option value=""></option>
                                                     <option value="student">Student</option>
                                                     <option value="child">Child</option>
                                                     <option value="groupe">Groupe</option>

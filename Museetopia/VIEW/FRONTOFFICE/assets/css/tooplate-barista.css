@@ -290,6 +290,7 @@ strong {
   line-height: normal;
   transition: all 0.3s;
   padding: 12px 28px;
+  z-index: -1;
 }
 
 .custom-btn:hover {
@@ -682,10 +683,10 @@ strong {
 
 
 /*---------------------------------------
-  OUR MENU              
+  OUR TICKETS        
 -----------------------------------------*/
 .menu-section {
-  background-image: url('../images/happy-waitress-giving-coffee-customers-while-serving-them-coffee-shop.jpg');
+  background-image: url('../images/tickets_background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }

@@ -6,11 +6,10 @@ $list = $ticketC->listTicket();
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <meta name="description" content="">
-        <meta name="author" content="">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="../FRONTOFFICE/assets/images/logo-museetopia.png">
+    <link rel="icon" type="image/png" href="../FRONTOFFICE/assets/images/logo-museetopia.png">
 
         <title>Museetopia</title>
 
@@ -40,9 +39,8 @@ Bootstrap 5 HTML CSS Template
 -->
     </head>
     
-    <body>
-                
-            <main>
+    <body>            
+        <main>
                 <nav class="navbar navbar-expand-lg">                
                     <div class="container">
                         <a class="navbar-brand d-flex align-items-center" href="index.html">
@@ -78,7 +76,7 @@ Bootstrap 5 HTML CSS Template
                             </ul>
 
                             <div class="ms-lg-3">
-                                <a class="btn custom-btn custom-border-btn" href="reservation.html">
+                                <a class="btn custom-btn custom-border-btn" href="reservationForm.php">
                                     Reservation
                                     <i class="bi-arrow-up-right ms-2"></i>
                                 </a>
@@ -177,7 +175,7 @@ Bootstrap 5 HTML CSS Template
                                     </div>
 
                                     <div class="team-block-image-wrap">
-                                        <img src="images/team/portrait-elegant-old-man-wearing-suit.jpg" class="team-block-image img-fluid" alt="">
+                                        <img src="../FRONTOFFICE/assets/images/team/portrait-elegant-old-man-wearing-suit.jpg" class="team-block-image img-fluid" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -195,7 +193,7 @@ Bootstrap 5 HTML CSS Template
                                     </div>
 
                                     <div class="team-block-image-wrap">
-                                        <img src="images/team/cute-korean-barista-girl-pouring-coffee-prepare-filter-batch-brew-pour-working-cafe.jpg" class="team-block-image img-fluid" alt="">
+                                        <img src="../FRONTOFFICE/assets/images/team/cute-korean-barista-girl-pouring-coffee-prepare-filter-batch-brew-pour-working-cafe.jpg" class="team-block-image img-fluid" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -213,7 +211,7 @@ Bootstrap 5 HTML CSS Template
                                     </div>
 
                                     <div class="team-block-image-wrap">
-                                        <img src="images/team/small-business-owner-drinking-coffee.jpg" class="team-block-image img-fluid" alt="">
+                                        <img src="../FRONTOFFICE/assets/images/team/small-business-owner-drinking-coffee.jpg" class="team-block-image img-fluid" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -231,7 +229,7 @@ Bootstrap 5 HTML CSS Template
                                     </div>
 
                                     <div class="team-block-image-wrap">
-                                        <img src="images/team/smiley-business-woman-working-cashier.jpg" class="team-block-image img-fluid" alt="">
+                                        <img src="../FRONTOFFICE/assets/images/team/smiley-business-woman-working-cashier.jpg" class="team-block-image img-fluid" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -243,29 +241,38 @@ Bootstrap 5 HTML CSS Template
 
                 
 
-                        <?php
-                        foreach($list as $ticket){
-                        ?>
-                        <section class="menu-section section-padding" id="section_3">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-6 col-12 mb-4 mb-lg-0">
-                                <div class="menu-block-wrap">
-                                    <div class="text-center mb-4 pb-lg-2">
-                                        <em class="text-white">best place to visit</em>
-                                        <h4> <?php echo $ticket['location']; ?></h4>
-                                        <p class="text-white ms-auto"><?php echo $ticket['location']; ?></p>
-                                        <p class="text-white ms-auto">Price: <?php echo $ticket['price']; ?> $</p></h4>
+<!-- affichage des tickets -->
+<section class="menu-section section-padding" id="section_3">
+    <div class="container">
+        <div class="row">
+            <?php
+                foreach($list as $ticket){
+                    ?>     
+                        <div class="col-lg-4 col-md-6 col-12 mb-4">
+                            <div class="card" style="background-color: white; border-radius: 15px; overflow: hidden; position: relative;" >
+                                <div class="card-body">
+                                    <!-- <img src="../FRONTOFFICE/assets/images/logo-museetopia.png"  style="position: absolute; top: 1; left: 0; width: 100%; height: 100%;  opacity: 0.2;"> -->
+                                    <h4><?php echo $ticket['musee_name']; ?></h4>
+                                    <p class="text-dark ms-auto">Location: <?php echo $ticket['location']; ?></p>
+                                    <p class="text-dark ms-auto">Date: <?php echo $ticket['date']; ?></p>
+                                    <p class="text-dark ms-auto">Time: <?php echo $ticket['time']; ?></p>
+                                    <p class="text-dark ms-auto">Price: <?php echo $ticket['price']; ?> DT</p>
+                                    <p class="text-dark ms-auto">Category: <?php echo $ticket['category']; ?></p>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="text-dark">Availability: <?php echo $ticket['disponible'] ? "yes" : "no"; ?></p>
+                                        <a class="btn custom-btn me-2 mb-2" href="reservationForm.php" role="button"><strong>RESERVE</strong></a>
                                     </div>
-                                </div>
                                     
+                                </div>
                             </div>
-                            </div>
-                    </div>
-                </section>
-                            <?php
-                            }
-                            ?>
+                        </div>
+                    <?php
+                }
+            ?>
+        </div>
+    </div>
+</section>
+                        
 
                             
                         

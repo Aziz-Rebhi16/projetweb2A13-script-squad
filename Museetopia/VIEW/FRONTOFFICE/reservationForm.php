@@ -1,3 +1,44 @@
+<?php
+
+include '../../CONTROLLER/ReservationController.php';
+
+
+$error = "";
+
+$reservation= null;
+// create an instance of the controller
+$ReservationController = new ReservationController();
+
+
+if (
+    isset($_POST["name"]) && isset($_POST["surname"]) && isset($_POST["email"]) && isset($_POST["phone"]) && isset($_POST["musee_name"]) && isset($_POST["date"]) && isset($_POST["time"]) && isset($_POST["price"]) && isset($_POST["category"])
+) {
+    if (
+        !empty($_POST["name"]) && !empty($_POST["surname"]) && !empty($_POST["email"]) && !empty($_POST["phone"]) && !empty($_POST["musee_name"]) && !empty($_POST["date"]) && !empty($_POST["time"]) && !empty($_POST["price"]) && !empty($_POST["category"])
+    
+    ) {
+        $reservation = new reservation(
+            null,
+            $_POST['name'],
+            $_POST['surname'],
+            $_POST['email'],
+            $_POST['phone'],
+            $_POST['musee_name'],
+            new DateTime($_POST['date']),
+            new DateTime($_POST['time']),
+            $_POST['price'],
+            $_POST['category']
+        );
+        
+            
+        $ReservationController->addReservation($reservation);
+
+        header('Location:reservationForm.php');
+    } else{
+        echo $error = "Missing information";
+    }
+}
+?>
 <!doctype html>
 <html lang="en">
     <head>
@@ -6,6 +47,8 @@
 
         <meta name="description" content="">
         <meta name="author" content="">
+        <link rel="apple-touch-icon" sizes="76x76" href="assets/img/logo-museetopia.png">
+        <link rel="icon" type="image/png" href="assets/images/logo-museetopia.png">
 
         <title>Museetopia - HTML Reservation Form</title>
 
@@ -23,25 +66,18 @@
         <link href="assets/css/vegas.min.css" rel="stylesheet">
 
         <link href="assets/css/tooplate-barista.css" rel="stylesheet">
-<!--
 
-Tooplate 2137 Barista
 
-https://www.tooplate.com/view/2137-barista-cafe
-
-Bootstrap 5 HTML CSS Template
-
--->
     </head>
     
-    <body class="reservation-page">
+    <body id="page-top">
                 
             <main>
                 <nav class="navbar navbar-expand-lg">                
                     <div class="container">
-                        <a class="navbar-brand d-flex align-items-center" href="index.html">
+                        <a class="navbar-brand d-flex align-items-center" href="accueil.php">
                             <img src="assets/images/logo-museetopia.png" class="navbar-brand-image img-fluid" alt="">
-                            MUSEETOPIA
+                            Reservation
                         </a>
         
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +87,7 @@ Bootstrap 5 HTML CSS Template
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav ms-lg-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index.html#section_1">Home</a>
+                                    <a class="nav-link" href="accueil.php">Home</a>
                                 </li>
         
                                 <li class="nav-item">
@@ -59,104 +95,93 @@ Bootstrap 5 HTML CSS Template
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index.html#section_3">Our Menu</a>
+                                    <a class="nav-link" href="index.html#section_3">Our Tickets</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index.html#section_4">Testimonials</a>
+                                    <a class="nav-link" href="../BACKOFFICE/ticketList.php">Dashboard</a>
                                 </li>
 
                                 <li class="nav-item">
                                     <a class="nav-link" href="index.html#section_5">Contact</a>
                                 </li>
                             </ul>
-
-                            <div class="ms-lg-3">
-                                <a class="btn custom-btn custom-border-btn" href="reservation.html">
-                                    Reservation
-                                    <i class="bi-arrow-up-right ms-2"></i>
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </nav>
                 
 
-                <section class="booking-section section-padding">
-                <div class="container">
-                    <div class="row">
+<section class="booking-section section-padding">
+<div class="container">
+    <div class="row ">
+        <div class="col-lg-10 col-12 mx-auto">
+            <div class="booking-form-wrap">
+                <div class="row">
+                        <form class="custom-form booking-form" id="addReservationForm" action="" method="post" >
+                            <div class="text-center mb-4 pb-lg-2">
+                                <em class="text-white">Fill out the booking form</em>
 
-                        <div class="col-lg-10 col-12 mx-auto">
-                            <div class="booking-form-wrap">
-                                <div class="row">
-                                    <div class="col-lg-12 col-12 p-0">
-                                        <form class="custom-form booking-form" action="#" method="post" role="form">
-                                            <div class="text-center mb-4 pb-lg-2">
-                                                <em class="text-white">Fill out the booking form</em>
-
-                                                <h2 class="text-white">BOOK A DATE </h2>
+                            <h2 class="text-white">BOOK A DATE </h2>
                                             </div>
 
-                                            <div class="booking-form-body">
-                                                <div class="rows">
-                                                    <div class="col-lg-6 col-12">
-                                                        <input type="text" name="booking-form-name" id="booking-form-name" class="form-control" placeholder="Name" required>
-                                                    </div>
+                            <div class="booking-form-body">
+                                <div class="rows">
+                                <label style="color: white;" for="name">Name:</label><br>
+                                <input class="form-control form-control-user" type="text" id="name" name="name" >
+                                <span id="name_error"></span><br>
+                                
 
-                                                    <div class="col-lg-6 col-12">
-                                                        <input type="text" name="booking-form-name" id="booking-form-name" class="form-control" placeholder="Surname" required>
-                                                    </div>
+                                <label style="color: white;" for="surname">Surname:</label><br>
+                                <input class="form-control form-control-user" type="text" id="surname" name="surname" >
+                                <span id="surname_error"></span><br>
 
-                                                    <div class="col-lg-6 col-12">
-                                                        <input type="email" name="booking-form-email" id="booking-form-email" class="form-control" placeholder="Email" required="">
-                                                    </div>
+                                <label style="color: white;" for="email">Email:</label><br>
+                                <input class="form-control form-control-user" type="email" id="email" name="email" >
+                                <span id="email_error"></span><br>
 
-                                                    
+                                <label style="color: white;" for="phone">Phone:</label><br>
+                                <input class="form-control form-control-user" type="tel" id="phone" name="phone" >
+                                <span id="phone_error"></span><br>
 
-                                                    <div class="col-lg-6 col-12">
-                                                        <div class="input-group">
-                                                            <select class="form-control" name="country-code" required="">
-                                                            <option value="+216">🇹🇳 +216</option>
-                                                            <option value="+1">🇺🇸 +1</option>
-                                                            <option value="+44">🇬🇧 +44</option>
-                                                            <option value="+33">🇫🇷 +33</option>
-                                                            </select>
-                                                            <input type="tel" class="form-control" name="booking-form-phone" placeholder="Phone: 85 456 789" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required="">
-                                                        </div>
-                                                    </div>
+                                <label style="color: white;" for="musee_name">Musee Name:</label><br>
+                                <input class="form-control form-control-user" type="text" id="musee_name" name="musee_name" >
+                                <span id="musee_name_error"></span><br>
 
+                                <label style="color: white;" for="date"> Date:</label><br>
+                                <input class="form-control form-control-user" type="date" id="date" name="date" >
+                                <span id="date_error"></span><br>
+                                        
+                                <label style="color: white;" for="time">Time:</label><br>
+                                <input class="form-control form-control-user white" type="time" id="time" name="time" >
+                                <span id="time_error"></span><br>
+                                        
+                                <label style="color: white;" for="price">Price :</label><br>
+                                <input class="form-control form-control-user"  type="number" id="price" name="price" step="0.5" >
+                                <span id="price_error"></span><br>
 
-                                                    
-
-                                                    <div class="col-lg-6 col-12">
-                                                        <input class="form-control" type="time" name="booking-form-time" min="00:00" max="24:00" value="18:30">
-                                                    </div>
-
-                                                    <div class="col-lg-6 col-12">
-                                                        <input type="date" name="booking-form-date" id="booking-form-date" class="form-control" placeholder="Date" required="">
-                                                    </div>
-
-                                                    <div class="col-lg-12 col-12">
-                                                        <input type="number" name="booking-form-number" id="booking-form-number" class="form-control" placeholder="Number of People" required="">
-
-                                                        <textarea name="booking-form-message" rows="3" class="form-control" id="booking-form-message" placeholder="Comment (Optional)"></textarea>
-                                                    </div>
-
-                                                    <div class="col-lg-4 col-md-10 col-8 mx-auto mt-2">
-                                                        <button type="submit" class="form-control">Submit</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-
+                                <label style="color: white;" for="category">Category:</label><br>
+                                <select class="form-control form-control-user" id="category" name="category" >
+                                    <option value=" "></option>
+                                    <option value="student">Student</option>
+                                    <option value="child">Child</option>
+                                    <option value="groupe">Groupe</option>
                                     
-                                </div>
-                            </div>
-
-                        </div>
+                                </select>
+                            <br>
+                        
+                                <button type="submit" 
+                                
+                                class="btn btn-primary btn-user btn-block" 
+                                onClick="validerFormulaire() "
+                                >Submit</button> 
+                        </form>
                     </div>
-                </section>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
                 <footer class="site-footer">

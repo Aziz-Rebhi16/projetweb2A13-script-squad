@@ -1,7 +1,7 @@
 <?php
-include '../../controller/TicketController.php';
-$ticketC = new TicketController();
-$list = $ticketC->listTicket();
+include '../../CONTROLLER/ReservationController.php';
+$reservationC = new ReservationController();
+$list = $reservationC->listReservation();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,8 +28,8 @@ $list = $ticketC->listTicket();
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
 </head>
 
-<body id="page-top">
-<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-2 " id="sidenav-main">
+<body id="page-top" >
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3  "  id="sidenav-main" >
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/soft-ui-dashboard/pages/dashboard.html " target="_blank">
@@ -37,9 +37,9 @@ $list = $ticketC->listTicket();
         <span class="ms-1 font-weight-bold">Museetopia Dashboard</span>
       </a>
     </div>
-    <hr class="horizontal dark mt-0">
+    <hr class="horizontal dark mt-2">
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav " >
         <li class="nav-item">
           <a class="nav-link  " href="../FRONTOFFICE/accueil.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -61,7 +61,7 @@ $list = $ticketC->listTicket();
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  active" href="ticketList.php">
+          <a class="nav-link  " href="ticketList.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>office</title>
@@ -81,7 +81,7 @@ $list = $ticketC->listTicket();
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="reservationList.php">
+          <a class="nav-link  active" href="reservationList.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>credit-card</title>
@@ -122,9 +122,9 @@ $list = $ticketC->listTicket();
           </a>
         </li>
   </aside>
-  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+  <main class="main-content  position-relative max-height-vh-100 h-100 ">
     <!-- Navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" navbar-scroll="true" >
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
@@ -191,7 +191,7 @@ $list = $ticketC->listTicket();
 <div class="container-fluid py-5">
     <div class="col-xl-12 col-md-6 mb-4">
         <div class="card-header pb-0">
-            <h6>Tickets List</h6>
+            <h6>reservations List</h6>
         </div>
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
@@ -199,37 +199,37 @@ $list = $ticketC->listTicket();
                         <div class="table-responsive">
                             <table class="table table-bordered table-success table-striped  ">
                                 <tr>
-                                    
+                                    <th>Name</th>
+                                    <th>Surname</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
                                     <th>Musee Name</th>
-                                    <th>Location</th>
                                     <th>Date</th>
                                     <th>Time</th>
                                     <th>Price</th>
-                                    <th>Availability</th>
                                     <th>Category</th>
                                     <th colspan="2">Actions</th>
                                 </tr>
     <?php
-        foreach ($list as $ticket) {
+        foreach ($list as $reservation) {
         ?> <tr>
-        
-            <td><?= $ticket['musee_name']; ?></td>
-            <td><?= $ticket['location']; ?></td>
-            <td><?= $ticket['date']; ?></td>
-            <td><?= $ticket['time']; ?></td>
-            <td><?= $ticket['price']; ?></td>
-            <td><?= $ticket['disponible'] ? "yes" : "no"; ?></td>
-            <td><?= $ticket['category']; ?></td>
+            <td><?= $reservation['name']; ?></td>
+            <td><?= $reservation['surname']; ?></td>
+            <td><?= $reservation['email']; ?></td>
+            <td><?= $reservation['phone']; ?></td>
+            <td><?= $reservation['musee_name']; ?></td>
+            <td><?= $reservation['date']; ?></td>
+            <td><?= $reservation['time']; ?></td>
+            <td><?= $reservation['price']; ?></td>
+            <td><?= $reservation['category']; ?></td>
             <td class="btn-group" role="group">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                ...
-            </button>
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
             <ul class="dropdown-menu">
-                <form method="POST" action="updateTicket.php">
+                <form method="POST" action="updateReservation.php">
                     <input class="btn btn-outline-info" type="submit" name="update" value="Update">
-                    <input  type="hidden" value=<?PHP echo $ticket['id']; ?> name="id">
+                    <input  type="hidden" value=<?PHP echo $reservation['id']; ?> name="id">
                 </form>
-                <a class="btn btn-outline-danger" href="deleteTicket.php ?id=<?php echo $ticket['id']; ?>">Delete</a>
+                <a class="btn btn-outline-danger" href="deleteReservation.php?id=<?php echo $reservation['id']; ?>">Delete</a>
             </ul>
             </td>
 

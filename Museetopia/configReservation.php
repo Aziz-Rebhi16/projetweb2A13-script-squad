@@ -1,5 +1,5 @@
 <?php
-class config
+class config2
 {   private static $pdo = null;
     public static function getConnexion()
     {
@@ -22,16 +22,5 @@ class config
         return self::$pdo;
     }
 }
-config::getConnexion();
-
+config2::getConnexion();
 ?>
-
-
-
-
-
-
-
-
-
-

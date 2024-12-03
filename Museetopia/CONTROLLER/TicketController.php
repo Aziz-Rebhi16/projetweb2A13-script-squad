@@ -42,7 +42,7 @@ class TicketController
                 'musee_name' => $ticket->getMusee_name(),
                 'location' => $ticket->getLocation(),
                 'date' => $ticket->getDate()->format('d-m-y'), 
-                'time' => $ticket->getTime()->format('H:i:s'),
+                'time' => $ticket->getTime()->format('H:i:sa'),
                 'price' => $ticket->getPrice(),
                 'disponible' => $ticket->isDisponible() ? 1 : 0, 
                 'category' => $ticket->getCategory()
@@ -75,7 +75,7 @@ class TicketController
             'musee_name' => $ticket->getMusee_name(),
             'location' => $ticket->getLocation(),
             'date' => $ticket->getDate()->format('d-m-y'), 
-            'time' => $ticket->getTime()->format('H:i:s'),
+            'time' => $ticket->getTime()->format('H:i:sa'),
             'price' => $ticket->getPrice(),
             'disponible' => $ticket->isDisponible() ? 1 : 0, 
             'category' => $ticket->getCategory()

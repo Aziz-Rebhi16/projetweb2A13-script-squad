@@ -22,6 +22,7 @@ class ticket {
         $this->category = $category;
     }
 
+
     // Getters and Setters
 
     public function getId(): ?int {
