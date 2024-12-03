@@ -34,8 +34,8 @@ class ReservationController
     {
         var_dump($reservation);
 
-        $sql = "INSERT INTO reservation (name, surname, email, phone, musee_name, date, time, price, category) 
-                VALUES (:name, :surname, :email, :phone, :musee_name, :date, :time, :price, :category)";
+        $sql = "INSERT INTO reservation (name, surname, email, phone, musee_name, date, time, price, category, ticket_id) 
+                VALUES (:name, :surname, :email, :phone, :musee_name, :date, :time, :price, :category, :ticket_id)";
         $db = config2::getConnexion();
         try {
             $query = $db->prepare($sql);
@@ -48,7 +48,8 @@ class ReservationController
                 'date' => $reservation->getDate()->format('Y-m-d') ,
                 'time' => $reservation->getTime()->format('H:i:s') ,
                 'price' => $reservation->getPrice(),
-                'category' => $reservation->getCategory()
+                'category' => $reservation->getCategory(),
+                'ticket_id' => $reservation->getTicketId() // Corrected method name
             ]);
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();

@@ -11,9 +11,10 @@ class reservation {
     private ?DateTime $time;
     private ?float $price;
     private ?string $category;
+    private ?int $ticket_id;
 
     // Constructor
-    public function __construct(?int $id,  ?string $name, ?string $surname, ?string $email, ?string $phone, ?string $musee_name, ?DateTime $date, ?DateTime $time, ?float $price, ?string $category) {
+    public function __construct(?int $id,  ?string $name, ?string $surname, ?string $email, ?string $phone, ?string $musee_name, ?DateTime $date, ?DateTime $time, ?float $price, ?string $category,?int $ticket_id) {
         $this->id = $id;
         $this->name=$name;
         $this->surname=$surname;
@@ -24,6 +25,7 @@ class reservation {
         $this->time = $time;
         $this->price = $price;
         $this->category = $category;
+        $this->ticket_id = $ticket_id;
     }
 
 
@@ -107,6 +109,14 @@ class reservation {
 
     public function setCategory(?string $category): void {
         $this->category = $category;
+    }
+
+    public function getTicketId(): ?int {
+        return $this->ticket_id;
+    }
+
+    public function setTicketId(?int $ticket_id): void {
+        $this->ticket_id = $ticket_id;
     }
 }
 

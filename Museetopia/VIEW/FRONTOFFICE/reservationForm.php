@@ -1,21 +1,26 @@
 <?php
 
 include '../../CONTROLLER/ReservationController.php';
-
+include '../../CONTROLLER/TicketController.php';
 
 $error = "";
+$reservation = null;
+$ticket = null;
+$ticket_id = isset($_GET['ticket_id']) ? $_GET['ticket_id'] : null;
 
-$reservation= null;
+if ($ticket_id) {
+    $ticketController = new TicketController();
+    $ticket = $ticketController->getTicketById($ticket_id);
+}
+
 // create an instance of the controller
 $ReservationController = new ReservationController();
-
 
 if (
     isset($_POST["name"]) && isset($_POST["surname"]) && isset($_POST["email"]) && isset($_POST["phone"]) && isset($_POST["musee_name"]) && isset($_POST["date"]) && isset($_POST["time"]) && isset($_POST["price"]) && isset($_POST["category"])
 ) {
     if (
         !empty($_POST["name"]) && !empty($_POST["surname"]) && !empty($_POST["email"]) && !empty($_POST["phone"]) && !empty($_POST["musee_name"]) && !empty($_POST["date"]) && !empty($_POST["time"]) && !empty($_POST["price"]) && !empty($_POST["category"])
-    
     ) {
         $reservation = new reservation(
             null,
@@ -27,14 +32,14 @@ if (
             new DateTime($_POST['date']),
             new DateTime($_POST['time']),
             $_POST['price'],
-            $_POST['category']
+            $_POST['category'],
+            $ticket_id
         );
-        
-            
+
         $ReservationController->addReservation($reservation);
 
         header('Location:reservationForm.php');
-    } else{
+    } else {
         echo $error = "Missing information";
     }
 }
@@ -127,48 +132,28 @@ if (
                             <div class="booking-form-body">
                                 <div class="rows">
                                 <label style="color: white;" for="name">Name:</label><br>
-                                <input class="form-control form-control-user" type="text" id="name" name="name" >
-                                <span id="name_error"></span><br>
-                                
-
+                                <input class="form-control form-control-user" type="text" id="name" name="name" ><br>
                                 <label style="color: white;" for="surname">Surname:</label><br>
-                                <input class="form-control form-control-user" type="text" id="surname" name="surname" >
-                                <span id="surname_error"></span><br>
-
+                                <input class="form-control form-control-user" type="text" id="surname" name="surname"><br>
                                 <label style="color: white;" for="email">Email:</label><br>
-                                <input class="form-control form-control-user" type="email" id="email" name="email" >
-                                <span id="email_error"></span><br>
-
+                                <input class="form-control form-control-user" type="email" id="email" name="email"><br>
                                 <label style="color: white;" for="phone">Phone:</label><br>
-                                <input class="form-control form-control-user" type="tel" id="phone" name="phone" >
-                                <span id="phone_error"></span><br>
-
+                                <input class="form-control form-control-user" type="tel" id="phone" name="phone"><br>
                                 <label style="color: white;" for="musee_name">Musee Name:</label><br>
-                                <input class="form-control form-control-user" type="text" id="musee_name" name="musee_name" >
-                                <span id="musee_name_error"></span><br>
-
+                                <input class="form-control form-control-user" type="text" readonly id="musee_name" name="musee_name" value="<?php echo $ticket ? $ticket['musee_name'] : ''; ?>"><br>
                                 <label style="color: white;" for="date"> Date:</label><br>
-                                <input class="form-control form-control-user" type="date" id="date" name="date" >
-                                <span id="date_error"></span><br>
-                                        
+                                <input class="form-control form-control-user" type="date" readonly id="date" name="date" value="<?php echo $ticket ? $ticket['date'] : ''; ?>"><br>
                                 <label style="color: white;" for="time">Time:</label><br>
-                                <input class="form-control form-control-user white" type="time" id="time" name="time" >
-                                <span id="time_error"></span><br>
-                                        
+                                <input class="form-control form-control-user white" readonly type="time" id="time" name="time" value="<?php echo $ticket ? $ticket['time'] : ''; ?>"><br>
                                 <label style="color: white;" for="price">Price :</label><br>
-                                <input class="form-control form-control-user"  type="number" id="price" name="price" step="0.5" >
-                                <span id="price_error"></span><br>
-
+                                <input class="form-control form-control-user"  readonly type="number" id="price" name="price" step="0.5" value="<?php echo $ticket ? $ticket['price'] : ''; ?>"><br>
                                 <label style="color: white;" for="category">Category:</label><br>
-                                <select class="form-control form-control-user" id="category" name="category" >
+                                <select class="form-control form-control-user" id="category" name="category">
                                     <option value=" "></option>
-                                    <option value="student">Student</option>
-                                    <option value="child">Child</option>
-                                    <option value="groupe">Groupe</option>
-                                    
-                                </select>
-                            <br>
-                        
+                                    <option value="student" <?php echo $ticket && $ticket['category'] == 'student' ? 'selected' : ''; ?>>Student</option>
+                                    <option value="child" <?php echo $ticket && $ticket['category'] == 'child' ? 'selected' : ''; ?>>Child</option>
+                                    <option value="groupe" <?php echo $ticket && $ticket['category'] == 'groupe' ? 'selected' : ''; ?>>Groupe</option>
+                                </select><br>
                                 <button type="submit" 
                                 
                                 class="btn btn-primary btn-user btn-block" 

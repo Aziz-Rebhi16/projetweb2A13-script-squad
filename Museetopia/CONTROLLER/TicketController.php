@@ -102,4 +102,16 @@ class TicketController
             die('Error: ' . $e->getMessage());
         }
     }
+
+    public function getTicketById($id) {
+        $sql = "SELECT * FROM ticket WHERE id = :id";
+        $db = config2::getConnexion();
+        try {
+            $query = $db->prepare($sql);
+            $query->execute(['id' => $id]);
+            return $query->fetch();
+        } catch (Exception $e) {
+            die('Error: ' . $e->getMessage());
+        }
+    }
 }

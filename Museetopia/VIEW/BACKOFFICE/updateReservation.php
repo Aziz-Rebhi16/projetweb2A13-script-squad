@@ -26,7 +26,8 @@ if (
             new DateTime($_POST['date']),
             new DateTime($_POST['time']),
             $_POST['price'],
-            $_POST['category']
+            $_POST['category'],
+            null // Add the missing argument here
         );
         
         $reservationC->updateReservation($reservation, $_POST['id']);

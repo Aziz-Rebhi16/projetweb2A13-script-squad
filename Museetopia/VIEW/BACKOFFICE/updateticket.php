@@ -194,7 +194,7 @@ if (
         </div>
         <div class="container">
         <div class="row mt-lg-n10 mt-md-n11 mt-n10">
-            <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+            <div class="col-md-10 mx-auto">
             <div class="card z-index-0">
                 <div class="card-body">
                         <!-- Page Heading -->
@@ -245,12 +245,13 @@ if (
                                                     
                                                 </select>
                                             <br>
-                                        
+                                            <div class="d-flex justify-content-end">
                                                 <button type="submit" 
                                                 class="btn btn-primary btn-user btn-block" 
                                                 onClick="validerFormulaire()"
                                                 >Update Ticket</button> 
-                                                <!-- <button type="submit" 
+                                            </div>
+                                            <!-- <button type="submit" 
                                                 class="btn btn-primary btn-user btn-block" 
                                                 
                                                 >Add Offer</button> -->

@@ -28,15 +28,7 @@ $list = $ticketC->listTicket();
 
         <link href="assets/css/tooplate-barista.css" rel="stylesheet">
         
-<!--
 
-Tooplate 2137 Barista Cafe
-
-https://www.tooplate.com/view/2137-barista-cafe
-
-Bootstrap 5 HTML CSS Template
-
--->
     </head>
     
     <body>            
@@ -260,7 +252,7 @@ Bootstrap 5 HTML CSS Template
                                     <p class="text-dark ms-auto">Category: <?php echo $ticket['category']; ?></p>
                                     <div class="d-flex justify-content-between">
                                         <p class="text-dark">Availability: <?php echo $ticket['disponible'] ? "yes" : "no"; ?></p>
-                                        <a class="btn custom-btn me-2 mb-2" href="reservationForm.php" role="button"><strong>RESERVE</strong></a>
+                                        <a class="btn custom-btn me-2 mb-2" href="reservationForm.php?ticket_id=<?php echo $ticket['id']; ?>" role="button"><strong>RESERVE</strong></a>
                                     </div>
                                     
                                 </div>
@@ -272,12 +264,7 @@ Bootstrap 5 HTML CSS Template
         </div>
     </div>
 </section>
-                        
-
-                            
-                        
-
-
+<!-- fin affichage des tickets -->
                 <section class="reviews-section section-padding section-bg" id="section_4">
                     <div class="container">
                         <div class="row justify-content-center">
