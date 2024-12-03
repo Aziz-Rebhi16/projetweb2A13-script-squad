@@ -114,4 +114,5 @@ class TicketController
             die('Error: ' . $e->getMessage());
         }
     }
+    
 }

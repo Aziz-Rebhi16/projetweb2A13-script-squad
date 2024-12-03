@@ -110,4 +110,46 @@ class ReservationController
             die('Error: ' . $e->getMessage());
         }
     }
+
+    public function showR($ticket_id)
+    {
+        try{
+            $pdo = config2::getConnexion();
+            $query = $pdo->prepare(
+                'SELECT * FROM reservation WHERE ticket_id = :ticket_id'
+            );
+            $query->execute([
+                'ticket_id' => $ticket_id
+            ]); 
+            return $query->fetchAll();
+        }catch(PDOException $e){
+            $e->getMessage();
+        }
+    }
+
+    public function showRes(){
+        try{
+            $pdo = config2::getConnexion();
+            $query = $pdo->prepare(
+                'SELECT * FROM reservation'
+            );
+            $query->execute();
+            return $query->fetchAll();
+        }catch(PDOException $e){
+            $e->getMessage();
+        }
+    }
+
+    public function getReservationByTicketId($ticket_id)
+    {
+        $sql = "SELECT * FROM reservation WHERE ticket_id = :ticket_id";
+        $db = config2::getConnexion();
+        try {
+            $query = $db->prepare($sql);
+            $query->execute(['ticket_id' => $ticket_id]);
+            return $query->fetch();
+        } catch (Exception $e) {
+            die('Error: ' . $e->getMessage());
+        }
+    }
 }

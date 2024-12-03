@@ -32,7 +32,7 @@ $list = $ticketC->listTicket();
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-2 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/soft-ui-dashboard/pages/dashboard.html " target="_blank">
+      <a class="navbar-brand m-0" href=" ../FRONTOFFICE/accueil.php " target="_blank">
         <img src="assets/img/logo-museetopia.png" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold">Museetopia Dashboard</span>
       </a>
@@ -41,7 +41,7 @@ $list = $ticketC->listTicket();
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link  " href="../FRONTOFFICE/accueil.php">
+          <a class="nav-link  " href="../BACKOFFICE/dashboard.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>shop </title>
@@ -57,7 +57,7 @@ $list = $ticketC->listTicket();
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">Accueil</span>
+            <span class="nav-link-text ms-1">Dashboard</span>
           </a>
         </li>
         <li class="nav-item">
@@ -220,19 +220,18 @@ $list = $ticketC->listTicket();
             <td><?= $ticket['price']; ?></td>
             <td><?= $ticket['disponible'] ? "yes" : "no"; ?></td>
             <td><?= $ticket['category']; ?></td>
-            <td class="btn-group" role="group">
+            <td class="btn-group-vertical " role="group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                ...
             </button>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu"> 
                 <form method="POST" action="updateTicket.php">
-                    <input class="btn btn-outline-info" type="submit" name="update" value="Update">
-                    <input  type="hidden" value=<?PHP echo $ticket['id']; ?> name="id">
+                  <input class="btn btn-primary w-100 mb-1" type="submit" name="update" value="Update">
+                  <input type="hidden" value=<?PHP echo $ticket['id']; ?> name="id">
                 </form>
-                <a class="btn btn-outline-danger" href="deleteTicket.php ?id=<?php echo $ticket['id']; ?>">Delete</a>
-            </ul>
+                <li><a class="btn btn-danger w-100 mb-1" href="deleteTicket.php?id=<?php echo $ticket['id']; ?>">Delete</a></li>
+                <li><a class="btn btn-dark w-100 mb-1" href="ticketDetails.php?id=<?php echo $ticket['id']; ?>">Details</a></li>
+              </ul>
             </td>
-
             </tr>
         <?php
     }
