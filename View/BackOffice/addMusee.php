@@ -1,27 +1,27 @@
-
 <?php
 
 include '../../controller/MuseeController.php';
+include_once '../../model/Musee.php'; // Assurez-vous que la classe Musee est incluse correctement 
 
 $error = ""; 
 
 $musee = null;
 // create an instance of the controller
-$museeController = new MuseeController();
+$museeController = new MuseeController();   
 
 if (
-    isset($_POST["nom"]) && isset($_POST["adresse"]) && isset($_POST["region"]) && isset($_POST["description"]) &&
+    isset($_POST["nom"]) && isset($_POST["adresse"]) && isset($_POST["region_id"]) && isset($_POST["description"]) &&
     isset($_POST["jours_fermeture"]) && isset($_POST["date_creation"])
 ) {
     if (
-        !empty($_POST["nom"]) && !empty($_POST["adresse"]) && !empty($_POST["region"]) && !empty($_POST["description"]) &&
+        !empty($_POST["nom"]) && !empty($_POST["adresse"]) && !empty($_POST["region_id"]) && !empty($_POST["description"]) &&
         !empty($_POST["jours_fermeture"]) && !empty($_POST["date_creation"])
     ) {
         $musee = new Musee(
             null, 
             $_POST['nom'],
             $_POST['adresse'],
-            $_POST['region'],
+            $_POST['region_id'],
             $_POST['description'],
             $_POST['jours_fermeture'],
             new DateTime($_POST['date_creation'])
@@ -29,7 +29,9 @@ if (
 
         $museeController->addMusee($musee);
 
+        // Rediriger après l'ajout
         header('Location: museeList.php');
+        exit(); // Assurez-vous que le script s'arrête après la redirection
     } else {
         $error = "Informations manquantes";
     }
@@ -96,6 +98,8 @@ if (
                         <div class="col-xl-12 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
+                                    <?php if (!empty($error)) { echo "<p style='color: red;'>$error</p>"; } ?>
+
                                     <form id="addMuseeForm" action="" method="POST">
                                         <label for="nom">Nom :</label><br>
                                         <input class="form-control form-control-user" type="text" id="nom" name="nom">
@@ -106,9 +110,12 @@ if (
                                             name="adresse">
                                         <br>
 
-                                        <label for="region">Région :</label><br>
-                                        <input class="form-control form-control-user" type="text" id="region"
-                                            name="region">
+                                        <label for="region_id">Région :</label><br>
+                                        <select class="form-control form-control-user" id="region_id" name="region_id">
+                                            <!-- Ajoutez ici vos options pour les régions -->
+                                            <option value="1">Région 1</option>
+                                            <option value="2">Région 2</option>
+                                        </select>
                                         <br>
 
                                         <label for="description">Description :</label><br>
@@ -130,7 +137,7 @@ if (
                                     </form>
 
                                     <!-- Bouton de retour à la liste des musées -->
-                                    <a href="museeList.php" class="btn btn-secondary btn-user btn-block mt-3">Back To Museum List</a>
+                                    <a href="museeList.php" class="btn btn-secondary btn-user btn-block mt-3">Retour à la liste des musées</a>
                                 </div>
                             </div>
                         </div>

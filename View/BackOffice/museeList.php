@@ -5,7 +5,7 @@ include '../../controller/MuseeController.php';
 $museeController = new MuseeController();
 
 // Récupérer la liste des musées
-$listeMusees = $museeController->listMusees();
+$listeMusees = $museeController->listMusees();   
 ?>
 
 <!DOCTYPE html> 
@@ -26,26 +26,47 @@ $listeMusees = $museeController->listMusees();
     <!-- Page Wrapper -->
     <div id="wrapper">
     
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-text mx-3">Museum Management</div>
-            </a>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="museeList.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Museum List</span>
-                </a>
-            </li>
-            <li class="nav-item">
-    <a class="nav-link" href="addMusee.php">
-        <i class="fas fa-fw fa-plus"></i>
-        <span>Ajouter Musée</span>
+       <!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-text mx-3">Museum Management</div>
     </a>
-</li>
-        </ul>
-        <!-- End of Sidebar -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Lien vers la liste des musées -->
+    <li class="nav-item active">
+        <a class="nav-link" href="museeList.php">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Museum List</span>
+        </a>
+    </li>
+
+    <!-- Lien vers l'ajout de musée -->
+    <li class="nav-item">
+        <a class="nav-link" href="addMusee.php">
+            <i class="fas fa-fw fa-plus"></i>
+            <span>Add Museum</span>
+        </a>
+    </li>
+
+    <!-- Lien vers la liste des régions -->
+    <li class="nav-item">
+        <a class="nav-link" href="regionList.php">
+            <i class="fas fa-fw fa-map-marker-alt"></i>
+            <span>Region List</span>
+        </a>
+    </li>
+
+    <!-- Lien vers l'ajout de région -->
+    <li class="nav-item">
+        <a class="nav-link" href="addRegion.php">
+            <i class="fas fa-fw fa-plus-circle"></i>
+            <span>Add Region</span>
+        </a>
+    </li>
+</ul>
+<!-- End of Sidebar -->
+
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -72,7 +93,7 @@ $listeMusees = $museeController->listMusees();
                                                 <th>ID</th>
                                                 <th>Name</th>
                                                 <th>Address</th>
-                                                <th>Region</th>
+                                                <th>Region_id</th>
                                                 <th>Closed Days</th>
                                                 <th>Creation Date</th>
                                                 <th>Actions</th>
@@ -85,7 +106,7 @@ $listeMusees = $museeController->listMusees();
                                                 echo '<td>' . $musee['id'] . '</td>';
                                                 echo '<td>' . $musee['nom'] . '</td>';
                                                 echo '<td>' . $musee['adresse'] . '</td>';
-                                                echo '<td>' . $musee['region'] . '</td>';
+                                                echo '<td>' . $musee['region_id'] . '</td>';
                                                 echo '<td>' . $musee['jours_fermeture'] . '</td>';
                                                 echo '<td>' . $musee['date_creation'] . '</td>';
                                                 echo '<td>

@@ -1,34 +1,27 @@
 <?php
 
-include '../../controller/MuseeController.php';  
+include '../../controller/RegionController.php';
 
 $error = "";
-$musee = null;
+$region = null;
 // Create an instance of the controller 
-$museeController = new MuseeController();   
-
+$regionController = new RegionController();  
 
 if (
-    isset($_POST["id"], $_POST["nom"], $_POST["adresse"], $_POST["region_id"], $_POST["jours_fermeture"], $_POST["description"], $_POST["date_creation"])
+    isset($_POST["id"], $_POST["nom"], $_POST["description"])
 ) {
     if (
-        !empty($_POST["id"]) && !empty($_POST["nom"]) && !empty($_POST["adresse"]) &&
-        !empty($_POST["region_id"]) && !empty($_POST["jours_fermeture"]) &&
-        !empty($_POST["description"]) && !empty($_POST["date_creation"])
+        !empty($_POST["id"]) && !empty($_POST["nom"]) && !empty($_POST["description"])
     ) {
-        $musee = new Musee(
+        $region = new Region(
             $_POST['id'], 
             $_POST['nom'],
-            $_POST['adresse'],
-            $_POST['region_id'],
-            $_POST['jours_fermeture'],
-            $_POST['description'],
-            new DateTime($_POST['date_creation'])
+            $_POST['description']
         );
         
-        // Update the museum
-        $museeController->updateMusee($musee, $_POST['id']);
-        header('Location: museeList.php');
+        // Update the region
+        $regionController->updateRegion($region, $_POST['id']);
+        header('Location: regionList.php');
         exit();
     } else {
         $error = "Missing information";
@@ -45,7 +38,7 @@ if (
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Update Museum - Dashboard</title>
+        <title>Update Region - Dashboard</title>
 
         <!-- Custom fonts for this template-->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -58,20 +51,20 @@ if (
         <div id="wrapper">
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                    <div class="sidebar-brand-text mx-3">Museum Booking</div>
+                    <div class="sidebar-brand-text mx-3">Region Management</div>
                 </a>
                 <hr class="sidebar-divider my-0">
                 <li class="nav-item active">
-                    <a class="nav-link" href="museeList.php">
+                    <a class="nav-link" href="regionList.php">
                         <i class="fas fa-fw fa-list"></i>
-                        <span>Back to Museum List</span></a>
+                        <span>Back to Region List</span></a>
                 </li>
             </ul>
             <div id="content-wrapper" class="d-flex flex-column">
                 <div id="content">
                     <div class="container-fluid">
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800">Update Museum</h1>
+                            <h1 class="h3 mb-0 text-gray-800">Update Region</h1>
                         </div>
 
                         <div class="row">
@@ -81,36 +74,24 @@ if (
                                         <div class="row no-gutters align-items-center">
                                             <?php
                                             if (isset($_GET['id'])) {
-                                                $musee = $museeController->showMusee($_GET['id']);
-                                                if ($musee) {
+                                                $region = $regionController->showRegion($_GET['id']);
+                                                if ($region) {
                                             ?>
                                                 <form action="" method="POST">
-                                                    <label for="id">Museum ID:</label><br>
-                                                    <input class="form-control" type="text" id="id" name="id" readonly value="<?php echo htmlspecialchars($musee['id']); ?>">
+                                                    <label for="id">Region ID:</label><br>
+                                                    <input class="form-control" type="text" id="id" name="id" readonly value="<?php echo htmlspecialchars($region['id']); ?>">
 
                                                     <label for="nom">Name:</label><br>
-                                                    <input class="form-control" type="text" id="nom" name="nom" value="<?php echo htmlspecialchars($musee['nom']); ?>" required>
-
-                                                    <label for="adresse">Address:</label><br>
-                                                    <input class="form-control" type="text" id="adresse" name="adresse" value="<?php echo htmlspecialchars($musee['adresse']); ?>" required>
-
-                                                    <label for="region_id">Region_id:</label><br>
-                                                    <input class="form-control" type="text" id="region_id" name="region_id" value="<?php echo htmlspecialchars($musee['region_id']); ?>" required>
-
-                                                    <label for="jours_fermeture">Days Closed:</label><br>
-                                                    <input class="form-control" type="text" id="jours_fermeture" name="jours_fermeture" value="<?php echo htmlspecialchars($musee['jours_fermeture']); ?>" required>
+                                                    <input class="form-control" type="text" id="nom" name="nom" value="<?php echo htmlspecialchars($region['nom']); ?>" required>
 
                                                     <label for="description">Description:</label><br>
-                                                    <textarea class="form-control" id="description" name="description" required><?php echo htmlspecialchars($musee['description']); ?></textarea>
+                                                    <textarea class="form-control" id="description" name="description" required><?php echo htmlspecialchars($region['description']); ?></textarea>
 
-                                                    <label for="date_creation">Creation Date:</label><br>
-                                                    <input class="form-control" type="date" id="date_creation" name="date_creation" value="<?php echo htmlspecialchars($musee['date_creation']); ?>" required>
-
-                                                    <button type="submit" class="btn btn-primary mt-3">Update Museum</button>
+                                                    <button type="submit" class="btn btn-primary mt-3">Update Region</button>
                                                 </form>
                                             <?php
                                                 } else {
-                                                    echo "<p>Museum not found.</p>";
+                                                    echo "<p>Region not found.</p>";
                                                 }
                                             } else {
                                                 echo "<p>No ID provided.</p>";
@@ -126,7 +107,7 @@ if (
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Museum Booking 2024</span>
+                            <span>Copyright &copy; Region Management 2024</span>
                         </div>
                     </div>
                 </footer>

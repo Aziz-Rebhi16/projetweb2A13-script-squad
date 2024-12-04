@@ -4,7 +4,7 @@ class Musee {
     private ?int $id;
     private ?string $nom;
     private ?string $adresse;
-    private ?string $region;
+    private ?string $region_id;
     private ?string $jours_fermeture;
     private ?string $description;
     private ?DateTime $date_creation;
@@ -14,7 +14,7 @@ class Musee {
         ?int $id,
         ?string $nom,
         ?string $adresse,
-        ?string $region,
+        ?string $region_id,
         ?string $jours_fermeture,
         ?string $description,
         ?DateTime $date_creation
@@ -22,7 +22,7 @@ class Musee {
         $this->id = $id;
         $this->nom = $nom;
         $this->adresse = $adresse;
-        $this->region = $region;
+        $this->region_id = $region_id;
         $this->jours_fermeture = $jours_fermeture;
         $this->description = $description;
         $this->date_creation = $date_creation;
@@ -54,12 +54,12 @@ class Musee {
         $this->adresse = $adresse;
     }
 
-    public function getRegion(): ?string {
-        return $this->region;
+    public function getRegion_id(): ?string {
+        return $this->region_id;
     }
 
-    public function setRegion(?string $region): void {
-        $this->region = $region;
+    public function setRegion(?string $region_id): void {
+        $this->region_id = $region_id;
     }
 
     public function getJoursFermeture(): ?string {

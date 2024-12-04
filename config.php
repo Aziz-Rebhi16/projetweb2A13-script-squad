@@ -1,7 +1,7 @@
 <?php
 class Config
 {
-    private static $pdo = null;
+    private static $pdo = null;      
 
     public static function getConnexion()
     {

@@ -1,13 +1,13 @@
 /* Styles pour la liste des musées dans le front-office */
 
 body {
-    background-color:  #f2f2f2; /* Couleur turquoise douce */
+    background-color:  #f2f2f2; /* Couleur turquoise douce */  
 }
 
 
 .museum-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Grille responsive */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Grille responsive */  
     gap: 20px; /* Espacement entre les musées */
     padding: 20px; /* Padding autour de la liste */
     margin-top: 20px;

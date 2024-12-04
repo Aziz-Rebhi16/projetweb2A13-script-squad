@@ -1,11 +1,13 @@
-
 <?php
-include '../../controller/MuseeController.php';
+require_once('C:/xampp/htdocs/REGION/controller/MuseeController.php');
+require_once('C:/xampp/htdocs/REGION/controller/RegionController.php');
+
+// Crée une instance du contrôleur RegionController
+$regionController = new RegionController();  
+$listRegions = $regionController->listRegions(); // Récupère la liste des régions
 
 // Crée une instance du contrôleur MuseeController
-$museeController = new MuseeController();
-$listMusees = $museeController->listMusees(); // Récupère la liste des musées
-
+$museeController = new MuseeController();          
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +35,7 @@ $listMusees = $museeController->listMusees(); // Récupère la liste des musées
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
         <div class="container">
             <a class="navbar-brand" href="#page-top">
-                <img src="assets/img/logo.png"  width="25%" height="25%" />
+                <img src="assets/img/logo.png" width="25%" height="25%" />
             </a>
             <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
@@ -46,7 +48,7 @@ $listMusees = $museeController->listMusees(); // Récupère la liste des musées
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="./../BackOffice/museeList.php">Dashboard</a></li>
                     <!-- Bouton pour la liste des musées dans le FrontOffice -->
                     <li class="nav-item mx-0 mx-lg-1">
-                        <a class="nav-link py-3 px-0 px-lg-3 rounded" href="museeListFront.php">Museum List</a>
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded" href="regionListFront.php">Regions</a>
                     </li>
                 </ul>
             </div>
@@ -66,23 +68,32 @@ $listMusees = $museeController->listMusees(); // Récupère la liste des musées
         </div>
     </header> 
 
-    <!-- Section Museum Offers -->
+    <!-- Section Region Offers -->
     <section class="page-section portfolio" id="portfolio">
         <div class="container">
-        <img src="assets/img/museum.jpg" width="30%" height="30%" />
+            <img src="assets/img/museum.jpg" width="30%" height="30%" />
             
             <div class="row justify-content-center">
                 <?php
-                foreach ($listMusees as $musee) { 
+                foreach ($listRegions as $region) {
                 ?>
                     <div class="col-md-6 col-lg-4 mb-5">
                         <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
-                            <img class="img-fluid" src="assets/img/musee.jpg"  />
+                            <img class="img-fluid" src="assets/img/museum.jpg" />
                         </div>
                         <div class="portfolio-caption text-center">
-                            <h4><?php echo $musee['nom']; ?></h4>
-                            <p class="text-muted"><?php echo $musee['region']; ?></p>
-                            <p class="text-muted">Closed Day: <?php echo $musee['jours_fermeture']; ?></p> 
+                            <h4><?php echo $region['nom']; ?></h4>
+                            <p class="text-muted"><?php echo $region['description']; ?></p>
+                            <!-- Afficher les musées associés à la région -->
+                            <p class="text-muted">
+                                <?php 
+                                    // Récupérer et afficher les musées associés à cette région
+                                    $museesRegion = $museeController->listMuseesByRegion($region['id']);
+                                    foreach ($museesRegion as $musee) {
+                                        echo "<strong>" . $musee['nom'] . "</strong> - Closed on: " . $musee['jours_fermeture'] . "<br>";
+                                    }
+                                ?>
+                            </p> 
                         </div>
                     </div>
                 <?php 
