@@ -241,20 +241,16 @@ $list = $ticketC->listTicket();
                 foreach($list as $ticket){
                     ?>     
                         <div class="col-lg-4 col-md-6 col-12 mb-4">
-                            <div class="card" style="background-color: white; border-radius: 15px; overflow: hidden; position: relative;" >
+                            <div class="card" style="background-color:rgba(0, 0, 0, 0.5); border-radius: 15px; overflow: hidden; position: relative;" >
                                 <div class="card-body">
-                                    <!-- <img src="../FRONTOFFICE/assets/images/logo-museetopia.png"  style="position: absolute; top: 1; left: 0; width: 100%; height: 100%;  opacity: 0.2;"> -->
-                                    <h4><?php echo $ticket['musee_name']; ?></h4>
-                                    <p class="text-dark ms-auto">Location: <?php echo $ticket['location']; ?></p>
-                                    <p class="text-dark ms-auto">Date: <?php echo $ticket['date']; ?></p>
-                                    <p class="text-dark ms-auto">Time: <?php echo $ticket['time']; ?></p>
-                                    <p class="text-dark ms-auto">Price: <?php echo $ticket['price']; ?> DT</p>
-                                    <p class="text-dark ms-auto">Category: <?php echo $ticket['category']; ?></p>
-                                    <div class="d-flex justify-content-between">
-                                        <p class="text-dark">Availability: <?php echo $ticket['disponible'] ? "yes" : "no"; ?></p>
-                                        <a class="btn custom-btn me-2 mb-2" href="reservationForm.php?ticket_id=<?php echo $ticket['id']; ?>" role="button"><strong>RESERVE</strong></a>
-                                    </div>
-                                    
+                                    <h4 class="text-warning"><?php echo $ticket['musee_name']; ?></h4>
+                                    <p class="text-white ms-auto">Location: <?php echo $ticket['location']; ?></p>
+                                    <p class="text-white ms-auto">Date: <?php echo $ticket['date']; ?></p>
+                                    <p class="text-white ms-auto">Time: <?php echo $ticket['time']; ?></p>
+                                    <p class="text-white ms-auto">Price: <?php echo $ticket['price']; ?> DT</p>
+                                    <p class="text-white ms-auto">Category: <?php echo $ticket['category']; ?></p>
+                                    <p class="text-white">Availability: <?php echo $ticket['disponible'] ? "yes" : "no"; ?></p>
+                                    <a class="btn custom-btn me-2 mb-2" href="reservationForm.php?ticket_id=<?php echo $ticket['id']; ?>" role="button"><strong>RESERVE</strong></a>
                                 </div>
                             </div>
                         </div>

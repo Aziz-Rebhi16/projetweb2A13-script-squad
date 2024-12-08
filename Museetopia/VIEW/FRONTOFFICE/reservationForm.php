@@ -258,6 +258,7 @@ if (
 
 
         <!-- JAVASCRIPT FILES -->
+         <script src="assets/js/addReservation.js"></script>
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/jquery.sticky.js"></script>
