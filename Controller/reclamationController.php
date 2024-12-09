@@ -103,4 +103,11 @@ function update_rec($reclamation, $id_rec)
             die('Error: ' . $e->getMessage());
         }
     }
+
+    public function getNewReclamationsCount() {
+        $db = config::getConnexion();
+        $query = $db->prepare("SELECT COUNT(*) FROM reclamations WHERE status = 'En cours'");
+        $query->execute();
+        return $query->fetchColumn();
+    }
 }

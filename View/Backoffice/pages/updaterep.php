@@ -29,6 +29,8 @@ if (
      {
         
       $id_rec=$_GET['id_rec'];
+      $id_rep=$_GET['id_rep'];
+
        
 
         
@@ -40,7 +42,7 @@ if (
         );
 
         
-        $reponseController->add_rep($reponse,$id_rec);
+        $reponseController->update_rep($reponse,$id_rep);
 
         
         header('Location: tables.php');
@@ -106,7 +108,14 @@ if (
               <div class="card-body">
               <form id="formrep" role="form text-left" action="" method="POST">
     <div class="d-flex justify-content-center col-lg-8 col-md-10">
-        <textarea id="contenu_rep" name="contenu_rep" rows="5" placeholder="Saisissez votre réponse ici..." aria-label="Name" class="form-control"></textarea>
+    <textarea id="contenu_rep" name="contenu_rep" rows="5" 
+                  placeholder="Saisissez votre réponse ici..." 
+                  aria-label="Name" class="form-control">
+<?php 
+    // Check if $reponse is valid before accessing the 'contenu_rep' key
+    echo isset($reponse['contenu_rep']) ? htmlspecialchars($reponse['contenu_rep']) : ''; 
+?>
+        </textarea>
     </div>
     <p id="errcontenu" class="text-center mt-2"></p>
     <div class="text-center">
