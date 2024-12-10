@@ -1,0 +1,11 @@
+{
+    "name": "abeda/2137_barista_cafe",
+    "autoload": {
+        "psr-4": {
+            "Abeda\\2137BaristaCafe\\": "src/"
+        }
+    },
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    }
+}
