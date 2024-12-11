@@ -110,4 +110,43 @@ function update_rec($reclamation, $id_rec)
         $query->execute();
         return $query->fetchColumn();
     }
+
+    function filterReclamations($startDate, $endDate, $status)
+{
+    $db = config::getConnexion();
+    try {
+        $sql = "SELECT * FROM reclamations WHERE 1=1";
+        
+        // Conditions dynamiques
+        if (!empty($startDate)) {
+            $sql .= " AND date_rec >= :startDate";
+        }
+        if (!empty($endDate)) {
+            $sql .= " AND date_rec <= :endDate";
+        }
+        if (!empty($status)) {
+            $sql .= " AND status = :status";
+        }
+        
+        $query = $db->prepare($sql);
+        
+        // Préparation des paramètres
+        $params = [];
+        if (!empty($startDate)) {
+            $params['startDate'] = $startDate;
+        }
+        if (!empty($endDate)) {
+            $params['endDate'] = $endDate;
+        }
+        if (!empty($status)) {
+            $params['status'] = $status;
+        }
+        
+        $query->execute($params);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        echo 'Error: ' . $e->getMessage();
+        return [];
+    }
+}
 }

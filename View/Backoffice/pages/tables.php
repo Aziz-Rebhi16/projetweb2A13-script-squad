@@ -15,11 +15,21 @@
 <?php
 include 'C:/xampp/htdocs/Reclamation/Controller/reclamationController.php';
 $reclamationController = new reclamationController();
-$list = $reclamationController->list_rec();
 include 'C:/xampp/htdocs/Reclamation/Controller/reponseController.php';
 $reponseController = new reponseController();
 $nouvelleReclamationCount = $reclamationController->getNewReclamationsCount();
 $list2 = $reponseController->list_rep();
+
+
+$startDate = isset($_GET['start_date']) ? $_GET['start_date'] : null;
+$endDate = isset($_GET['end_date']) ? $_GET['end_date'] : null;
+$status = isset($_GET['status']) ? $_GET['status'] : null;
+if ($startDate || $endDate || $status) {
+  $list = $reclamationController->filterReclamations($startDate, $endDate, $status);
+} else {
+  // Si aucun critère, afficher toutes les réclamations
+  $list = $reclamationController->list_rec();
+}
 ?>
 
 
@@ -184,6 +194,39 @@ $list2 = $reponseController->list_rep();
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <!-- Navbar -->
         <!-- End Navbar -->
+         <!--formulaire de recherche -->
+         <form method="GET" action="tables.php" class="mb-4">
+    <div class="row">
+        <!-- Filtrage par date de début -->
+        <div class="col-md-4">
+            <label for="start_date">Date de début :</label>
+            <input type="date" class="form-control" id="start_date" name="start_date" value="<?php echo isset($_GET['start_date']) ? htmlspecialchars($_GET['start_date']) : ''; ?>">
+        </div>
+        
+        <!-- Filtrage par date de fin -->
+        <div class="col-md-4">
+            <label for="end_date">Date de fin :</label>
+            <input type="date" class="form-control" id="end_date" name="end_date" value="<?php echo isset($_GET['end_date']) ? htmlspecialchars($_GET['end_date']) : ''; ?>">
+        </div>
+        
+        <!-- Filtrage par statut -->
+        <div class="col-md-3">
+            <label for="status">Statut :</label>
+            <select class="form-control" id="status" name="status">
+                <option value="">Tous les statuts</option>
+                <option value="en cours" <?php echo (isset($_GET['status']) && $_GET['status'] === 'En cours') ? 'selected' : ''; ?>>En cours</option>
+                <option value="traitée" <?php echo (isset($_GET['status']) && $_GET['status'] === 'traitée') ? 'selected' : ''; ?>>Traitée</option>
+            </select>
+        </div>
+        
+        <!-- Bouton de filtrage -->
+        <div class="col-md-3 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary w-50 me-2">Rechercher</button>
+            <a href="tables.php" class="btn btn-secondary w-50">Réinitialiser</a>
+        </div>
+    </div>
+</form>
+
      <!--Tableau reclamation-->
     <div class="container-fluid py-4">
     <div class="dashboard-info">
