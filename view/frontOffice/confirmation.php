@@ -63,6 +63,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmer'])) {
 
             // Vider le panier
             unset($_SESSION['panier']);
+            // Supprimer tous les produits du panier
+try {
+    $stmt = $db->prepare("DELETE FROM panier");
+    $stmt->execute();
+} catch (Exception $e) {
+    echo "<p>Erreur lors de la suppression du panier dans la base de données : " . $e->getMessage() . "</p>";
+}
+
             
             $mail = new PHPMailer(true);
 
@@ -82,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmer'])) {
             
                 // Content
                 $mail->isHTML(true);                                         // Set email format to HTML
-                $mail->Subject = 'achat confirmé !';
+                $mail->Subject = 'achat confirme !';
                 $mail->Body    = 'merci pour votre achat 😊.';
                 $mail->AltBody = 'This is the plain text version of the email.';
             
