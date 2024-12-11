@@ -4,8 +4,12 @@ include '../../controller/MuseeController.php';
 // Instancier le contrôleur des musées
 $museeController = new MuseeController();
 
-// Récupérer la liste des musées
-$listeMusees = $museeController->listMusees();   
+// Gérer le tri et la recherche
+$order = isset($_GET['order']) ? $_GET['order'] : 'asc';
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+
+// Récupérer la liste des musées avec tri et recherche
+$listeMusees = $museeController->listMusees($order, $search);
 ?>
 
 <!DOCTYPE html> 
@@ -82,6 +86,16 @@ $listeMusees = $museeController->listMusees();
                 <!-- Page Content -->
                 <div class="container-fluid">
                     <h1 class="h3 mb-0 text-gray-800">List of Museums</h1>
+
+                    <!-- Control de tri et recherche -->
+                    <div class="mb-3">
+                        <form method="GET" action="museeList.php" class="form-inline">
+                            <input type="text" name="search" class="form-control mr-2" placeholder="Search by name..." value="<?php echo htmlspecialchars($search); ?>">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </form>
+                        <a href="museeList.php?order=asc" class="btn btn-primary mt-2">Trier par date (Ancien → Nouveau)</a>
+                        <a href="museeList.php?order=desc" class="btn btn-primary mt-2">Trier par date (Nouveau → Ancien)</a>
+                    </div>
 
                     <div class="row">
                         <div class="col-xl-12 col-md-6 mb-4">

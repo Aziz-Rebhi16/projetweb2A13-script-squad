@@ -8,14 +8,14 @@ $error = "";
 $region = null;
 
 // Instancier le contrôleur
-$regionController = new RegionController();
+$regionController = new RegionController();    
 
 if (isset($_POST["nom"]) && isset($_POST["description"]) && isset($_FILES["image"])) {
     if (!empty($_POST["nom"]) && !empty($_POST["description"]) && !empty($_FILES["image"]["name"])) {
         // Gestion du téléchargement de l'image
         $target_dir = __DIR__ . '/assets/img/';
         if (!file_exists($target_dir)) {
-    mkdir($target_dir, 0777, true);
+    mkdir($target_dir, 0777, true);  
     }
 
     $target_file = $target_dir . '/' . basename($_FILES["image"]["name"]);
@@ -42,9 +42,7 @@ if (isset($_POST["nom"]) && isset($_POST["description"]) && isset($_FILES["image
                     // Rediriger vers la liste des régions si succès
                     header('Location: regionList.php');
                     exit;
-                } else {
-                    $error = "Erreur lors de l'ajout de la région dans la base de données.";
-                }
+                } 
             } else {
                 $error = "Erreur lors du téléchargement de l'image.";
             }

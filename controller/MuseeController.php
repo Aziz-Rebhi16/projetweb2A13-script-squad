@@ -6,17 +6,24 @@ class MuseeController
 {
     // Récupérer la liste de tous les musées
     public function listMusees() 
-    {
-        $sql = "SELECT * FROM musees";  
-
-        $db = config::getConnexion();
-        try {
-            $liste = $db->query($sql);
-            return $liste;
-        } catch (Exception $e) {
-            die('Error:' . $e->getMessage());
-        }
+{
+    $order = 'ASC'; // Par défaut, trier du plus ancien au plus récent
+    if (isset($_GET['order']) && ($_GET['order'] == 'desc' || $_GET['order'] == 'asc')) {
+        $order = $_GET['order']; // Si l'utilisateur a choisi un ordre, on l'utilise
     }
+
+    $sql = "SELECT * FROM musees ORDER BY date_creation " . $order;  // Trier par date de création
+    
+    $db = config::getConnexion();
+    try {
+        $liste = $db->query($sql);
+        return $liste;
+    } catch (Exception $e) {
+        die('Error:' . $e->getMessage());
+    }
+}
+
+
     
 
     // Supprimer un musée par son ID
