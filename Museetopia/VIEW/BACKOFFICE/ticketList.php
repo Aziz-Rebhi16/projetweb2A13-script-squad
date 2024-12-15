@@ -1,7 +1,44 @@
 <?php
 include '../../controller/TicketController.php';
+
+//ticket-list
 $ticketC = new TicketController();
 $list = $ticketC->listTicket();
+
+$error = "";
+
+$ticket= null;
+// create an instance of the controller
+$ticketController = new TicketController();
+
+
+if (
+    isset($_POST["musee_name"])  && $_POST["location"] && $_POST["date"] && $_POST["time"] && $_POST["price"]  && $_POST["category"]
+) {
+    if (
+        !empty($_POST["musee_name"])  && !empty($_POST["location"]) && !empty($_POST["date"]) && !empty($_POST["time"]) && !empty($_POST["price"]) && !empty($_POST["category"])
+    
+    ) {
+        $disponible = isset($_POST['disponible']) ? true : false;
+        $ticket = new Ticket(
+            null,
+            $_POST['musee_name'],
+            $_POST['location'],
+            new DateTime($_POST['date']),
+            new DateTime($_POST['time']),
+            $_POST['price'],
+            $disponible,
+            $_POST['category']
+        );
+        
+            
+        $ticketController->addTicket($ticket);
+
+        header('Location:ticketList.php');
+    } else
+        echo $error = "Missing information";
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +66,56 @@ $list = $ticketC->listTicket();
 </head>
 
 <body id="page-top">
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Ticket</h1>
+        <button type="button" class="btn-close btn-dark" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <div class="modal-body" >
+        <form id="addTicketForm" action="" method="POST">
+          <label for="musee_name">Musee Name:</label><br>
+          <input class="form-control form-control-user" type="text" id="musee_name" name="musee_name" >
+          <span id="musee_name_error"></span><br>
+
+          <label for="location">Location:</label><br>
+          <input class="form-control form-control-user" type="text" id="location" name="location" >
+          <span id="location_error"></span><br>
+
+          <label for="date"> Date:</label><br>
+          <input class="form-control form-control-user" type="date" id="date" name="date" >
+          <span id="date_error"></span><br>
+
+          <label for="time">Time:</label><br>
+          <input class="form-control form-control-user" type="time" id="time" name="time" >
+          <span id="time_error"></span><br>
+
+          <label for="price">Price :</label><br>
+          <input class="form-control form-control-user"  type="number" id="price" name="price" step="0.5" >
+          <span id="price_error"></span><br>
+
+          <div class="form-check form-switch">
+            <input type="checkbox" class="form-check-input form-check-input-primary" id="flexSwitchCheckDefault" name="disponible">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Availability</label>
+          </div>
+
+          <label for="category">Category:</label><br>
+          <select class="form-control form-control-user" id="category" name="category" >
+              <option value=""></option>
+              <option value="student">Student</option>
+              <option value="child">Child</option>
+              <option value="groupe">Groupe</option>
+          </select>
+          <br>
+          <button type="submit" class="btn btn-primary btn-user btn-block" onClick="validerFormulaire()">Add </button> 
+        </form>
+        </div>
+    </div>
+  </div>
+</div>
+<!-- end modal -->
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-2 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -169,11 +256,22 @@ $list = $ticketC->listTicket();
     
                             <!-- Earnings (Monthly) Card Example -->
 <div class="container-fluid py-5">
+
     <div class="col-xl-12 col-md-6 mb-4">
         <div class="card-header pb-0 d-flex justify-content-between align-items-center">
             <h6>Tickets List</h6>
-            <a class="btn btn-dark mb-0" href="ticketDetails.php">Details</a>
+            <button type="button" class="btn btn-primary btn-sm mb-0 me-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Add Ticket
+            </button>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-md-6 mb-4">
+
+
+
+
+
             <div class="card border-left shadow h-100 py-2 ">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -210,6 +308,7 @@ $list = $ticketC->listTicket();
                   <input type="hidden" value=<?PHP echo $ticket['id']; ?> name="id">
                 </form>
                 <li><a class="btn btn-danger w-100 mb-1" href="deleteTicket.php?id=<?php echo $ticket['id']; ?>">Delete</a></li>
+                <li><a class="btn btn-dark w-100 mb-1" href="ticketDetails.php">Details</a></li>
               </ul>
             </td>
             </tr>
