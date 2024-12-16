@@ -59,6 +59,10 @@ $list = $ticketC->listTicket();
                                 </li>
 
                                 <li class="nav-item">
+                                    <a class="nav-link click-scroll" href="accueil.php#section_4">Reviews</a>
+                                </li>
+
+                                <li class="nav-item">
                                     <a class="nav-link click-scroll" href="#section_5">Contact</a>
                                 </li>
                             </ul>

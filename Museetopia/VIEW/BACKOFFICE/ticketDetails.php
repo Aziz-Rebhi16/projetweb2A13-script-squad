@@ -56,6 +56,8 @@ $list1 = $reservationController->listReservation();
 </head>
 
 <body id="page-top">
+
+<!-- Side Navbar -->
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3  " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -107,49 +109,23 @@ $list1 = $reservationController->listReservation();
             <span class="nav-link-text ms-1">Reservation</span>
             </a>
         </li>
-        <li class="nav-item"> 
-        <a class="nav-link  " href="Addticket.php"> 
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"> 
-            <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> 
-                <title>shop </title> 
-                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> 
-                <g transform="translate(-1716.000000, -439.000000)" fill="#FFFFFF" fill-rule="nonzero"> 
-                    <g transform="translate(1716.000000, 291.000000)"> 
-                    <g transform="translate(0.000000, 148.000000)"> 
-                        <path class="color-background" d="M22.7597136,19.3090182 L38.8987031,11.2395234 C39.3926816,10.9925342 39.592906,10.3918611 39.3459167,9.89788265 C39.249157,9.70436312 39.0922432,9.5474453 38.8987261,9.45068056 L20.2741875,0.1378125 L20.2741875,0.1378125 C19.905375,-0.04725 19.469625,-0.04725 19.0995,0.1378125 L3.1011696,8.13815822 C2.60720568,8.38517662 2.40701679,8.98586148 2.6540352,9.4798254 C2.75080129,9.67332903 2.90771305,9.83023153 3.10122239,9.9269862 L21.8652864,19.3090182 C22.1468139,19.4497819 22.4781861,19.4497819 22.7597136,19.3090182 Z"></path>
-                        <path class="color-background opacity-6" d="M23.625,22.429159 L23.625,39.8805372 C23.625,40.4328219 24.0727153,40.8805372 24.625,40.8805372 C24.7802551,40.8805372 24.9333778,40.8443874 25.0722402,40.7749511 L41.2741875,32.673375 L41.2741875,32.673375 C41.719125,32.4515625 42,31.9974375 42,31.5 L42,14.241659 C42,13.6893742 41.5522847,13.241659 41,13.241659 C40.8447549,13.241659 40.6916418,13.2778041 40.5527864,13.3472318 L24.1777864,21.5347318 C23.8390024,21.7041238 23.625,22.0503869 23.625,22.429159 Z"></path>
-                        <path class="color-background opacity-6" d="M20.4472136,21.5347318 L1.4472136,12.0347318 C0.953235098,11.7877425 0.352562058,11.9879669 0.105572809,12.4819454 C0.0361450918,12.6208008 6.47121774e-16,12.7739139 0,12.929159 L0,30.1875 L0,30.1875 C0,30.6849375 0.280875,31.1390625 0.7258125,31.3621875 L19.5528096,40.7750766 C20.0467945,41.0220531 20.6474623,40.8218132 20.8944388,40.3278283 C20.963859,40.1889789 21,40.0358742 21,39.8806379 L21,22.429159 C21,22.0503869 20.7859976,21.7041238 20.4472136,21.5347318 Z"></path>
-                    </g> 
-                    </g> 
-                </g> 
-                </g> 
-            </svg> 
-            </div> 
-            <span class="nav-link-text ms-1">Add Tickets</span> 
-            </a> 
-        </li>  
         </ul>
     </div>
     </aside>
+    <!-- End Side Navbar -->
+    
         <!-- Earnings (Monthly) Card Example -->
         <main class="main-content  mt-0">
         <section class="min-vh-100 mb-8">
         <div class="page-header align-items-start min-vh-50 pt-3 pb-12 m-3 border-radius-lg" style="background-image: url('assets/img/curved-images/curved14.jpg');">
-        <span class="mask bg-gradient-dark opacity-3"></span>
+        <span class="mask bg-gradient-dark opacity-4"></span>
         <div class="container">
             <div class="row justify-content-center">
             <div class="col-lg-7 text-center mx-auto">
                 <h1 class="text-white mb-2 mt-5">Tickets Details</h1>
             </div>
-            </div>
-        </div>
-        </div>
-    <!-- ticket card -->
-    <div class="container">
-        <div class="row mt-lg-n10 mt-md-n11 mt-n10">
-            <div class="col-xl-12 col-lg-5 col-md-7 mx-auto">
-                <div class="card z-index-0">
-                    <div class="card-body" style="background-color:rgba(0, 0, 0, 0.1);">
+            <!-- ticket card -->
+            <div class="card-body" style="background-color:rgba(0, 0, 0, 0.5);">
                         <div class="row">
                             <?php if (!empty($reservation)) { ?>
                                 <?php foreach ($list1 as $res) { ?>
@@ -166,7 +142,14 @@ $list1 = $reservationController->listReservation();
                                                     <p class="text-white ms-auto">Time: <?php echo $res['time']; ?></p>
                                                     <p class="text-white ms-auto">Price: <?php echo $res['price']; ?> DT</p>
                                                     <p class="text-white ms-auto">Category: <?php echo $ticket['category']; ?></p>
-                                                    <a href="mail.php" type="submit" class="btn btn-outline-white"><strong>Verification</strong></a>
+                                                    <div class="d-flex justify-content-end mb-3">
+                                                        <button type="button" class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#validerTicket">
+                                                        approve
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger btn-sm me-2" data-bs-toggle="modal" data-bs-target="#rejectTicket">
+                                                            reject
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -179,11 +162,113 @@ $list1 = $reservationController->listReservation();
                             <?php } ?>
                         </div>
                     </div>
-                </div>
+            </div>
+            <!-- end ticket card -->  
+        </div>
+        </div>
+        </section>
+        <!-- approve  -->
+<div class="modal fade" id="validerTicket" tabindex="-1" aria-labelledby="validerTicketLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Valider Reservation</h1>
+                <button type="button" class="btn-close btn-dark" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" >
+                <form action="sendmail.php" method="post">
+                    <div class="mb-3">
+                        <label style="color: dark;" for="name"> Name:</label>
+                        <input class="form-control form-control-user" type="text" id="name" name="name">
+                    </div>
+                    <div class="mb-3">
+                        <label style="color: dark;" for="surname"> Surname:</label>
+                        <input class="form-control form-control-user" type="text" id="surname" name="surname">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email_address">Email</label>
+                        <input type="email" class="form-control" id="email_address" name="email" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone">Phone</label>
+                        <input type="text" class="form-control" id="phone" name="phone" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="musee_name">Musee Name</label>
+                        <input class="form-control" id="musee_name" name="musee_name" ></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="date">Date</label>
+                        <input type="date" class="form-control" id="date" name="date" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="time">Time</label>
+                        <input type="time" class="form-control" id="time" name="time" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="price">Price</label>
+                        <input type="number" class="form-control" id="price" name="price" >
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" name="approved" class="btn btn-success">Send</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <!-- end ticket card -->
+</div>
+<!-- end approve -->
+<!-- reject -->
+<div class="modal fade" id="rejectTicket" tabindex="-1" aria-labelledby="rejectTicketLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">reject Reservation</h1>
+                <button type="button" class="btn-close btn-dark" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" >
+                <form action="rejectMail.php" method="post">
+                    <div class="mb-3">
+                        <label style="color: dark;" for="name"> Name:</label>
+                        <input class="form-control form-control-user" type="text" id="name" name="name">
+                    </div>
+                    <div class="mb-3">
+                        <label style="color: dark;" for="surname"> Surname:</label>
+                        <input class="form-control form-control-user" type="text" id="surname" name="surname">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email_address">Email</label>
+                        <input type="email" class="form-control" id="email_address" name="email" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone">Phone</label>
+                        <input type="text" class="form-control" id="phone" name="phone" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="musee_name">Musee Name</label>
+                        <input class="form-control" id="musee_name" name="musee_name" ></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="date">Date</label>
+                        <input type="date" class="form-control" id="date" name="date" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="time">Time</label>
+                        <input type="time" class="form-control" id="time" name="time" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="price">Price</label>
+                        <input type="number" class="form-control" id="price" name="price" >
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" name="rejected" class="btn btn-success">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end reject -->
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
@@ -210,7 +295,7 @@ $list1 = $reservationController->listReservation();
         <script>
             var messageText = '<?php echo $_SESSION['status'] ?? ''; ?>';
                 if(messageText != ''){
-                Swal.fire({
+                    Swal.fire({
                     icon: 'success',
                     title: 'Thank you !',
                     text: messageText,

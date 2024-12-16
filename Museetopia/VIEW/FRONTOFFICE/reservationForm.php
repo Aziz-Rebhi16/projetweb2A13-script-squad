@@ -38,7 +38,7 @@ if (
 
         $ReservationController->addReservation($reservation);
 
-        header('Location:accueil.php');
+        header('Location:accueil.php#section_3');
     } else {
         echo $error = "Missing information";
     }
@@ -77,12 +77,55 @@ if (
     
     <body id="page-top">
                 
-        <main>
+<main>
+<nav class="navbar navbar-expand-lg">                
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="accueil.php">
+            <img src="assets\images\logo-museetopia.png" class="navbar-brand-image img-fluid" alt="Barista Cafe Template">
+            Museetopia
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation">
+            <span class="assets/navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-lg-auto">
+                <li class="nav-item">
+                    <a class="nav-link click-scroll" href="accueil.php#section_1">Home</a>
+                </li>
+        
+                <li class="nav-item">
+                    <a class="nav-link click-scroll" href="accueil.php#section_2">About</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link click-scroll" href="accueil.php#section_3">Our Tickets</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link click-scroll" href="accueil.php#section_4">Reviews</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link click-scroll" href="accueil.php#section_5">Contact</a>
+                </li>
+            </ul>
+
+            <div class="ms-lg-3">
+                <a class="btn custom-btn custom-border-btn" href="../BACKOFFICE/ticketList.php">
+                    Dashboard
+                    <i class="bi-arrow-up-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
 
 <section class="booking-section section-padding">
 <div class="container">
     <div class="row ">
-        <div class="col-lg-10 col-12 mx-auto">
+        <div class="col-lg-8  mx-auto">
             <div class="booking-form-wrap">
                 <div class="row">
                         <form class="custom-form booking-form" id="addReservationForm" action="" method="post" >

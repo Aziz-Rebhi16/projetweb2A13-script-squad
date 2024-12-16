@@ -12,7 +12,7 @@ require 'PHPMailer/src/SMTP.php';
 
 
 
-if(isset($_POST['approved'])){
+if(isset($_POST['rejected'])){
 
     $name=$_POST['name'];
     $surname=$_POST['surname'];
@@ -45,13 +45,14 @@ if(isset($_POST['approved'])){
         $mail->Subject = 'Reservation Confirmation';
         $mail->Body    = '<h3>HELLO !</h3>
         <h4> Dear '.$name.' '.$surname.' </h4>
-        <h5> We are pleased to inform you that your reservation at has been approved. </h5>
-        <h5> We are looking forward to welcoming you at '.$musee_name.' </h5>
+        <h5> We regret to inform you that your reservation at '.$musee_name.' has been rejected. </h5>
+        <h5> Unfortunately, we are unable to accommodate your request at this time. </h5>
         <h3><strong>DETAILS :</strong></h3>
         <h5>Reservation Date : '.$date.'</h5>
         <h5>Reservation Time : '.$time.'</h5>
         <h5>Price : '.$price.' DT</h5>
-        <p>Thank you for choosing Museetopia</p>
+        <p>We apologize for any inconvenience this may cause.</p>
+        <p>Thank you for understanding.</p>
         <p>Best Regards</p>
         <p>Museetopia Team</p>
         ';
@@ -72,7 +73,7 @@ if(isset($_POST['approved'])){
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
 }else{
-    header('Location: ticketDetails.php');
+    header('Location: mail.php');
         exit(0);
 }
 
