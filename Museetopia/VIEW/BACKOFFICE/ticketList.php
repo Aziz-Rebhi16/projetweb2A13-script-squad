@@ -239,10 +239,12 @@ if (
 <div class="container-fluid py-5">
 
     <div class="col-xl-12 col-md-6 mb-4">
-        <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-            <h6>Tickets List</h6>
-            <button type="button" class="btn btn-primary btn-sm mb-0 me-3" data-bs-toggle="modal" data-bs-target="#addTicket">
-              Add Ticket
+        <div class="card-header pb-0 d-flex justify-content-center align-items-center">
+            <h2><strong>Tickets List</strong></h2>
+        </div>
+        <div class="d-flex justify-content-end mb-3">
+            <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#addTicket">
+          Add Ticket
             </button>
         </div>
     </div>
@@ -252,7 +254,7 @@ if (
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-success table-striped  ">
+                            <table class="table table-bordered table-hover table-sm">
                                 <tr>
                                     <th>Id</th>
                                     <th>Musee Name</th>
@@ -272,19 +274,19 @@ if (
             <td><?= $ticket['location']; ?></td>
             <td><?= $ticket['date']; ?></td>
             <td><?= $ticket['time']; ?></td>
-            <td><?= $ticket['price']; ?></td>
+            <td><?= $ticket['price']; ?> DT</td>
             <td><?= $ticket['disponible'] ? "yes" : "no"; ?></td>
             <td><?= $ticket['category']; ?></td>
             <td class="btn-group-vertical " role="group">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             </button>
             <ul class="dropdown-menu"> 
                 <form method="POST" action="updateTicket.php">
-                  <input class="btn btn-primary w-100 mb-1" type="submit" name="update" value="Update">
+                  <input class="btn btn-outline-primary w-100 mb-1" type="submit" name="update" value="Update">
                   <input type="hidden" value=<?PHP echo $ticket['id']; ?> name="id">
                 </form>
-                <li><a class="btn btn-danger w-100 mb-1" href="deleteTicket.php?id=<?php echo $ticket['id']; ?>">Delete</a></li>
-                <li><a class="btn btn-dark w-100 mb-1" href="ticketDetails.php?id=<?php echo $ticket['id']; ?>">Details</a></li>
+                <li><a class="btn btn-outline-danger w-100 mb-1" href="deleteTicket.php?id=<?php echo $ticket['id']; ?>">Delete</a></li>
+                <li><a class="btn btn-outline-dark w-100 mb-1" href="ticketDetails.php?id=<?php echo $ticket['id']; ?>">Details</a></li>
               </ul>
             </td>
             </tr>

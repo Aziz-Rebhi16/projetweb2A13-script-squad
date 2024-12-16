@@ -149,14 +149,14 @@ $list = $reservationC->listReservation();
                             <!-- Earnings (Monthly) Card Example -->
 <div class="container-fluid py-5">
     <div class="col-xl-12 col-md-6 mb-4">
-        <div class="card-header pb-0">
-            <h6>reservations List</h6>
+        <div class="card-header pb-0 text-center">
+            <h2><strong>Reservations List</strong></h2>
         </div>
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-success table-striped  ">
+                            <table class="table table-bordered table-hover table-sm">
                                 <tr>
                                     <th>Name</th>
                                     <th>Surname</th>
@@ -182,7 +182,7 @@ $list = $reservationC->listReservation();
             <td><?= $reservation['price']; ?></td>
             <td><?= $reservation['category']; ?></td>
             <td class="btn-group" role="group">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
+            <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
             <ul class="dropdown-menu">
                 <form method="POST" action="updateReservation.php">
                     <input class="btn btn-primary w-100 mb-1" type="submit" name="update" value="Update">
