@@ -10,6 +10,12 @@ $ticketController = new TicketController();
 $reservation = [];
 $ticket = [];
 $ticket_id = isset($_POST['ticket_id']) ? $_POST['ticket_id'] : null;
+$id = isset($_GET['id']) ? $_GET['id'] : null;
+
+if ($id) {
+    $reservation = $reservationController->getReservationByTicketId($id);
+    $ticket = $ticketController->getTicketById($reservation['ticket_id']);
+}
 
 if ($ticket_id) {
     $reservation = $reservationController->getReservationByTicketId($ticket_id);
@@ -140,46 +146,37 @@ $list1 = $reservationController->listReservation();
             <div class="col-xl-12 col-lg-5 col-md-7 mx-auto">
                 <div class="card z-index-0">
                     <div class="card-body" style="background-color:rgba(0, 0, 0, 0.1);">
-                        <form id="ticketDetailsForm" action="" method="POST">
-                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-            <div class="input-group">
-              <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-              <input type="text" class="form-control" placeholder="Search for ticket ID" name="ticket_id" value="<?php echo isset($ticket_id) ? $ticket_id : ''; ?>">
-            </div>
-          </div>
-                        </form>
-                        
-                    <?php if (!empty($reservation)) { ?>
-                        <h3 class="text-center mt-4">All Reservations for Ticket ID: <?php echo $ticket_id; ?></h3>
                         <div class="row">
-                            <?php foreach ($list1 as $reservation) { ?>
-                                <?php if ($reservation['ticket_id'] == $ticket_id) { ?>
-                                    <div class="col-lg-4 col-md-6 col-12 mb-4">
-                                        <div class="card" style="background-color:rgba(0, 0, 0, 0.5); border-radius: 15px; overflow: hidden; position: relative;">
-                                            <div class="card-body">
-                                                <p class="text-white ms-auto">Name: <?php echo $reservation['name']; ?></p>
-                                                <p class="text-white ms-auto">Email: <?php echo $reservation['email']; ?></p>
-                                                <p class="text-white ms-auto">Phone: <?php echo $reservation['phone']; ?></p>
-                                                <p class="text-white ms-auto">Museum: <?php echo $reservation['musee_name']; ?></p>
-                                                <p class="text-white ms-auto">Location: <?php echo $ticket['location']; ?></p>
-                                                <p class="text-white ms-auto">Date: <?php echo $reservation['date']; ?></p>
-                                                <p class="text-white ms-auto">Time: <?php echo $reservation['time']; ?></p>
-                                                <p class="text-white ms-auto">Price: <?php echo $reservation['price']; ?> DT</p>
-                                                <p class="text-white ms-auto">Category: <?php echo $ticket['category']; ?></p>
-                                                <a href="mail.php" type="submit" class="btn btn-outline-white"><strong>Vérification</strong></a>
+                            <?php if (!empty($reservation)) { ?>
+                                <?php foreach ($list1 as $res) { ?>
+                                    <?php if ($res['ticket_id'] == $ticket['id']) { ?>
+                                        <div class="col-lg-4 col-md-6 col-12 mb-4">
+                                            <div class="card" style="background-color:rgba(0, 0, 0, 0.5); border-radius: 15px; overflow: hidden; position: relative;">
+                                                <div class="card-body">
+                                                    <p class="text-white ms-auto">Name: <?php echo $res['name']; ?></p>
+                                                    <p class="text-white ms-auto">Email: <?php echo $res['email']; ?></p>
+                                                    <p class="text-white ms-auto">Phone: <?php echo $res['phone']; ?></p>
+                                                    <p class="text-white ms-auto">Museum: <?php echo $res['musee_name']; ?></p>
+                                                    <p class="text-white ms-auto">Location: <?php echo $ticket['location']; ?></p>
+                                                    <p class="text-white ms-auto">Date: <?php echo $res['date']; ?></p>
+                                                    <p class="text-white ms-auto">Time: <?php echo $res['time']; ?></p>
+                                                    <p class="text-white ms-auto">Price: <?php echo $res['price']; ?> DT</p>
+                                                    <p class="text-white ms-auto">Category: <?php echo $ticket['category']; ?></p>
+                                                    <a href="mail.php" type="submit" class="btn btn-outline-white"><strong>Verification</strong></a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                <?php }?>
+                                    <?php } ?>
+                                <?php } ?>
+                            <?php } else { ?>
+                                <div class="col-12">
+                                    <h3 class='text-center mt-4'>No Reservations for Ticket ID: <?php echo $id; ?></h3>
+                                </div>
                             <?php } ?>
                         </div>
-                    <?php } else{
-                                    echo "<h3 class='text-center mt-4'>No Reservations for Ticket ID: $ticket_id</h3>";
-                                }  ?>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </div>
     <!-- end ticket card -->
