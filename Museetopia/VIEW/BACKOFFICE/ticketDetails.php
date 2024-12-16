@@ -14,12 +14,16 @@ $id = isset($_GET['id']) ? $_GET['id'] : null;
 
 if ($id) {
     $reservation = $reservationController->getReservationByTicketId($id);
-    $ticket = $ticketController->getTicketById($reservation['ticket_id']);
+    if (is_array($reservation)) {
+        $ticket = $ticketController->getTicketById($reservation['ticket_id']);
+    }
 }
 
 if ($ticket_id) {
     $reservation = $reservationController->getReservationByTicketId($ticket_id);
-    $ticket = $ticketController->getTicketById($ticket_id);
+    if (is_array($reservation)) {
+        $ticket = $ticketController->getTicketById($ticket_id);
+    }
 }
 
 $list = $ticketController->listTicket();
