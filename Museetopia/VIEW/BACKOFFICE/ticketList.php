@@ -40,7 +40,6 @@ if (
         echo $error = "Missing information";
 }
 
-//update-ticket
 
 
 ?>

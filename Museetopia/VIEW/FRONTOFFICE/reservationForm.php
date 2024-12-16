@@ -38,7 +38,7 @@ if (
 
         $ReservationController->addReservation($reservation);
 
-        header('Location:reservationForm.php');
+        header('Location:accueil.php');
     } else {
         echo $error = "Missing information";
     }
@@ -77,44 +77,7 @@ if (
     
     <body id="page-top">
                 
-            <main>
-                <nav class="navbar navbar-expand-lg">                
-                    <div class="container">
-                        <a class="navbar-brand d-flex align-items-center" href="accueil.php">
-                            <img src="assets/images/logo-museetopia.png" class="navbar-brand-image img-fluid" alt="">
-                            Reservation
-                        </a>
-        
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-        
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav ms-lg-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="accueil.php">Home</a>
-                                </li>
-        
-                                <li class="nav-item">
-                                    <a class="nav-link" href="index.html#section_2">About us</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" href="index.html#section_3">Our Tickets</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" href="../BACKOFFICE/ticketList.php">Dashboard</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" href="index.html#section_5">Contact</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-                
+        <main>
 
 <section class="booking-section section-padding">
 <div class="container">
@@ -123,7 +86,7 @@ if (
             <div class="booking-form-wrap">
                 <div class="row">
                         <form class="custom-form booking-form" id="addReservationForm" action="" method="post" >
-                            <div class="text-center mb-4 pb-lg-2">
+                            <div class="text-center mb-0 pb-lg-0 pb-0">
                                 <em class="text-white">Fill out the booking form</em>
 
                             <h2 class="text-white">BOOK A DATE </h2>

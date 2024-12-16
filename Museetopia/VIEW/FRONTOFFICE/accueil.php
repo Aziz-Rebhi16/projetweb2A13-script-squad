@@ -58,18 +58,14 @@ $list = $ticketC->listTicket();
                                     <a class="nav-link click-scroll" href="#section_3">Our Tickets</a>
                                 </li>
 
-                                <li class="nav-item mx-0 mx-lg-1">
-                                    <a class="nav-link " href="../BACKOFFICE/ticketList.php">Dashboard</a>
-                                </li>
-
                                 <li class="nav-item">
                                     <a class="nav-link click-scroll" href="#section_5">Contact</a>
                                 </li>
                             </ul>
 
                             <div class="ms-lg-3">
-                                <a class="btn custom-btn custom-border-btn" href="reservationForm.php">
-                                    Reservation
+                                <a class="btn custom-btn custom-border-btn" href="../BACKOFFICE/ticketList.php">
+                                    Dashboard
                                     <i class="bi-arrow-up-right ms-2"></i>
                                 </a>
                             </div>

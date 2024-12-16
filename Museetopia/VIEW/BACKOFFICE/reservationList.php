@@ -2,6 +2,8 @@
 include '../../CONTROLLER/ReservationController.php';
 $reservationC = new ReservationController();
 $list = $reservationC->listReservation();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
