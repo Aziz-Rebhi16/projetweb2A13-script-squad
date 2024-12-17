@@ -103,7 +103,7 @@ if (
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link click-scroll" href="../FrontOffice/reclamation/ajoutrec.php">Reclamation</a>
+                                    <a class="nav-link click-scroll" href="ajoutrec.php">Reclamation</a>
                                 </li>
                             </ul>
 
