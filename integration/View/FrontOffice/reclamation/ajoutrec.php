@@ -15,7 +15,7 @@ if (
     ) {
         
         $status = isset($_POST['status']) ? $_POST['status'] : 'En cours';
-       
+
 
         
         $reclamation = new Reclamation(
@@ -35,7 +35,6 @@ if (
         header('Location: ../accueil.php');
         exit();  
     } else {
-      
         $error = "Missing information. Please fill in all required fields.";
     }
 }

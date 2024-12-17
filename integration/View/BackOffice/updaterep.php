@@ -31,7 +31,7 @@ if (
         $reponseController->update_rep($reponse,$id_rep);
 
         
-        header('Location: reclamation.php');
+        header('Location: reclamationList.php');
         exit();  
     } else {
       

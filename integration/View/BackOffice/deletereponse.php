@@ -10,7 +10,7 @@ if (isset($_GET["id_rep"]) && is_numeric($_GET["id_rep"])) {
 
     $reponseController->delete_rep($id_rep);
 
-    header('Location: reclamation.php');
+    header('Location: reclamationList.php');
     exit();
 } else {
     echo "Invalid ID or missing parameter!";

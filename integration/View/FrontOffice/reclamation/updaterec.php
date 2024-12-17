@@ -37,7 +37,7 @@ if (
 
 
         
-        header('Location: ../../BackOffice/reclamation.php');
+        header('Location: ../../BackOffice/reclamationList.php');
         exit();  
     } else {
       

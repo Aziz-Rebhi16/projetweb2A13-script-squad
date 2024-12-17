@@ -29,7 +29,7 @@ if (
         $reponseController->add_rep($reponse,$id_rec);
 
         
-        header('Location: reclamations.php');
+        header('Location: reclamationList.php');
         exit();  
     } else {
       
