@@ -294,7 +294,7 @@ if (
                         <td><?= $ticket['disponible'] ? "yes" : "no"; ?></td>
                         <td><?= $ticket['category']; ?></td>
                         <td class="btn-group-vertical " role="group">
-                          <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                          <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="true"></button>
                           <ul class="dropdown-menu">
                           <form method="POST" action="updateTicket.php">
                             <input class="btn btn-outline-primary w-100 mb-1" type="submit" name="update" value="Update">

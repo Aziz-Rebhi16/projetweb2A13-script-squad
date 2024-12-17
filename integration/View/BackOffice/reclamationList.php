@@ -268,18 +268,15 @@ if ($startDate || $endDate || $status) {
             <td class="align-middle text-center">
                 <span class="text-secondary text-xs font-weight-bold"><?= ucfirst($reclamation['status']); ?></span>
             </td>
-            <td class="align-middle">
-                <a href="../FrontOffice/reclamation/updaterec.php?id_rec=<?= $reclamation['id_rec']; ?>" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" title="Edit">
-                    Màj
-                </a>
-                <a href="deletereclamation.php?id_rec=<?= $reclamation['id_rec']; ?>" class="text-secondary font-weight-bold text-xs ml-2" data-toggle="tooltip" title="Delete">
-                    Supprimer
-                </a>
-                <a href="ajoutrep.php?id_rec=<?= $reclamation['id_rec']; ?>" class="text-secondary font-weight-bold text-xs ml-2" data-toggle="tooltip" title="Delete">
-                    Répondre
-                </a>
+            <td class="btn-group-vertical " role="group">
+                          <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="true"></button>
+                          <ul class="dropdown-menu">
+                            <li><a class="btn btn-outline-primary w-100 mb-1" href="../FrontOffice/reclamation/updaterec.php?id_rec=<?= $reclamation['id_rec']; ?>">Update</a></li>
+                            <li><a class="btn btn-outline-danger w-100 mb-1" href="deletereclamation.php?id_rec=<?= $reclamation['id_rec']; ?>">Delete</a></li>
+                            <li><a class="btn btn-outline-dark w-100 mb-1" href="ajoutrep.php?id_rec=<?= $reclamation['id_rec']; ?>">reponse</a></li>
+                          </ul>
+                        </td>
 
-            </td>
         </tr>
         <?php endforeach; ?>
     </tbody>
@@ -324,17 +321,13 @@ if ($startDate || $endDate || $status) {
             <td class="align-middle text-center">
                 <span class="text-secondary text-xs font-weight-bold"><?= $reponse['contenu_rep']; ?></span>
             </td>
-            <td class="align-middle">
-            <a href="deletereponse.php?id_rep=<?= $reponse['id_rep']; ?>" class="text-secondary font-weight-bold text-xs ml-2" data-toggle="tooltip" title="Delete">
-                    Supprimer
-                </a>
-                <a href="updaterep.php?id_rep=<?= $reponse['id_rep']; ?>&id_rec=<?= $reponse['id_rec']; ?>" 
-   class="text-secondary font-weight-bold text-xs ml-2" 
-   data-toggle="tooltip" 
-   title="Mettre à jour">
-   MàJ
-</a>
-
+            <td class="btn-group-vertical " role="group">
+                          <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="true"></button>
+                          <ul class="dropdown-menu">
+                            <li><a class="btn btn-outline-danger w-100 mb-1" href="deletereponse.php?id_rep=<?= $reponse['id_rep']; ?>">Delete</a></li>
+                            <li><a class="btn btn-outline-dark w-100 mb-1" href="updaterep.php?id_rep=<?= $reponse['id_rep']; ?>&id_rec=<?= $reponse['id_rec']; ?>">reponse</a></li>
+                          </ul>
+                        </td>
             </td>
         </tr>
         <?php endforeach; ?>
