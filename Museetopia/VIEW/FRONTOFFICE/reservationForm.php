@@ -122,7 +122,7 @@ if (
     </div>
 </nav>
 
-<section class="booking-section section-padding">
+<section class="booking-section  section-padding" style="background-image: url('./assets/images/kairouan.jpg');background-repeat: no-repeat;background-size: cover;">
 <div class="container">
     <div class="row ">
         <div class="col-lg-8  mx-auto">
